@@ -1,0 +1,181 @@
+#!/usr/bin/env python
+#!/usr/bin/env tkinter
+
+import tkinter as tk
+from tkinter import messagebox
+from operator import sub
+import configparser
+import sys
+
+
+#REPRESENTACION DE LOS NUMEROS
+uno = (0,0)
+dos = (0,1)
+tres = (0,2)
+cuatro = (1,0)
+cinco = (1,1)
+seis = (1,2)
+siete = (2,0)
+ocho = (2,1)
+nueve = (2,2)
+cero = (3,1)
+analizando =(0,0)
+numeroMov = 0
+
+
+################################################################################## INTERFAZ GRAFICA
+root = tk.Tk()
+
+w = 400 
+h = 210 
+ws = root.winfo_screenwidth() 
+hs = root.winfo_screenheight() 
+x = (ws/2) - (w/2)
+y = (hs/2) - (h/2)
+root.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
+frame = tk.Frame(root, bg='white')
+frame.pack(fill='both', expand='yes')
+
+label = tk.Label(frame, text="Ingresar PIN",bg='white',font=("Arial",16))
+label.place(x=140, y=10)
+
+##
+labelX = tk.Label(frame, text="X",bg='white',font=("Arial",13))
+labelX.place(x=110, y=95)
+
+labelY = tk.Label(frame, text="Y",bg='white',font=("Arial",13))
+labelY.place(x=190, y=95)
+
+labelZ = tk.Label(frame, text="Z",bg='white',font=("Arial",13))
+labelZ.place(x=280, y=95)
+
+entry = tk.Entry(frame, bd =0,width=15,font=("Arial",16),justify='center')
+entry.place(x=110, y=55)
+
+###
+
+entryX = tk.Entry(frame, bd =0,width=8,font=("Arial",12),justify='center')
+entryX.place(x=80, y=120)
+
+entryY = tk.Entry(frame, bd =0,width=8,font=("Arial",12),justify='center')
+entryY.place(x=165, y=120)
+
+entryZ = tk.Entry(frame, bd =0,width=8,font=("Arial",12),justify='center')
+entryZ.place(x=250, y=120)
+
+##
+
+def helloCallBack():
+    s = entry.get()
+    print(s)
+    pin = tuple(s)
+    print(pin)
+    metodoEnvioPIN(pin)
+    
+button = tk.Button(frame, text="OK", bg='white',command = helloCallBack)
+button.place(x=175, y=160)
+
+##################################################################################
+
+
+
+
+
+
+
+################################################################################## METODOS PARA CREAR LENGUAJE
+
+config = configparser.ConfigParser()
+
+def makeMove(count):
+    config.add_section("MOV"+str(count))
+
+def add(Data,Value,count):
+    config.set("MOV"+str(count),Data,str(Value))
+
+def addConf(Data,Value):
+    config.set("CONF",Data,str(Value))
+
+def save():
+    # save to a file
+    with open('languaje.ini', 'w') as configfile:
+        config.write(configfile)
+
+##################################################################################
+
+def metodoEnvioPIN(pin):
+
+    config.add_section("CONF")
+    addConf("x",int(entryX.get()))
+    addConf("y",int(entryY.get()))
+    addConf("z",int(entryZ.get()))
+
+    #POS ACTUAL
+    current =(1,1)  
+    for num in pin:
+            if num == '1':
+                    writeMoves(uno,current,num)
+                    current = uno
+            elif num == '2':
+                    analizando = dos
+                    writeMoves(dos,current,num)
+                    current = dos
+            elif num == '3':
+                    analizando = tres
+                    writeMoves(tres,current,num)
+                    current = tres
+            elif num == '4':
+                    analizando = cuatro
+                    writeMoves(cuatro,current,num)
+                    current = cuatro
+            elif num == '5':
+                    analizando = cinco
+                    writeMoves(cinco,current,num)
+                    current = cinco
+            elif num == '6':
+                    analizando = seis
+                    writeMoves(seis,current,num)
+                    current = seis
+            elif num == '7':
+                    analizando = siete
+                    writeMoves(siete,current,num)
+                    current = siete
+            elif num == '8':
+                    analizando = ocho
+                    writeMoves(analizando,current,num)
+                    current = ocho
+            elif num == '9':
+                    analizando = nueve
+                    writeMoves(analizando,current,num)
+                    current = nueve
+            else:
+                    analizando = cero
+                    writeMoves(analizando,current,num)
+                    current = cero
+    print("FIN")
+    save();
+    
+ 
+def writeMoves(analizando, current, num):
+    global numeroMov
+    newMov = tuple(map(sub, analizando, current))
+    makeMove(numeroMov)
+    
+    if (newMov[1] > 0):
+        add("right",abs(newMov[1]),numeroMov)
+    if (newMov[1] < 0):
+        add("left",abs(newMov[1]),numeroMov)
+    if (newMov[0] < 0):
+        add("up",abs(newMov[0]),numeroMov)
+    if (newMov[0] > 0):
+        add("down",abs(newMov[0]),numeroMov)
+
+    add("action","click",numeroMov)
+    numeroMov=numeroMov+1;
+    return
+
+    
+
+
+root.mainloop()

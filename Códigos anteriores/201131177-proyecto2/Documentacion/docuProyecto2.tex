@@ -1,0 +1,310 @@
+%% LyX 2.0.6 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{graphicx}
+\usepackage{babel}
+\begin{document}
+\begin{center}
+{\large{Instituto Tecnológico de Costa Rica}}\\
+
+\par\end{center}{\large \par}
+
+\begin{center}
+{\large{Principios de Sistemas Operativos}}\\
+
+\par\end{center}{\large \par}
+
+\begin{center}
+{\large{Proyecto 2}}\\
+
+\par\end{center}{\large \par}
+
+\begin{center}
+Estudiantes:
+\par\end{center}
+
+\begin{center}
+{\large{Michael Varela Suarez}}
+\par\end{center}{\large \par}
+
+\begin{center}
+{\large{Oscar Montes Fonseca}}
+\par\end{center}{\large \par}
+
+\begin{center}
+{\large{Melvin Gutierrez Vargas }}
+\par\end{center}{\large \par}
+
+\begin{center}
+\newpage{}
+\par\end{center}
+
+
+\subsection*{Introducción}
+
+El siguiente proyecto tiene como objetivo principal la construcción
+de un dispositivo que permita la automatización de pruebas físicas
+sobre un celular o tableta, cuando éstas le solicitan al usuario el
+ingreso de un pin numérico. La idea está en simular el proceso de
+un token en una transacción bancaria suponiendo que la entidad financiera
+provee una aplicación móvil donde el usuario deberá ingresar su pin
+de seguridad dado a su computador que tiene acceso al dispositivo
+para indicarle cual es el pin valido para esa transacción. Entonces
+el robot se encarga automáticamente del ingreso de este y se logra
+abstraer por completo al usuario la existencia del pin. \\
+\\
+Para el desarrollo de este proyecto se necesita que exista un driver
+capaz de controlar al dispositivo usando el sistema operativo Linux.
+Asimismo, de un lenguaje que permita la comunicación entre el driver
+y una biblioteca de acceso a las principales funciones para el control
+de este. A continuación, se detallarán las herramientas de desarrollo,
+el proceso del diseño y la construcción tanto del software como del
+hardware del dispositivo. 
+
+
+\subsection*{Ambiente de desarrollo}
+
+Las herramientas utilizadas para el desarrollo del proyecto fueron
+las siguientes:
+\begin{itemize}
+\item Python 3
+\item C
+\item Arduino 1.6.5 
+\item LabView 2014
+\item Gedit 3 
+\item USB.h 
+\end{itemize}
+
+\subsection*{Instrucciones para ejecutar el programa:}
+
+1. Ejecutar el programa writePin.py en terminal mediante: 
+
+\$ python writePin.py\\
+\\
+2. Digitar el pin deseado en el programa y la configuración \textquotedblleft{}x,y,z\textquotedblright{}
+y presionar el boton OK.\\
+\\
+3. Ejecutar el programa interpreter.py en terminal mediante: 
+
+\$ python interpreter.py 
+
+
+\subsection*{Estructuras de datos usadas y funciones: }
+\begin{itemize}
+\item Vectores: Se utilizaron para la representación de los números del
+teclado del celular. Cada vector equivalía a la posición en la matriz
+que era una abstracción de la pantalla. Por ejemplo, para el número
+8 se tenía el vector (2,1). 
+\item Matriz: Se utilizó para la abstracción del teclado numérico del dispositivo. 
+\item writePin(pin): Esta función recibe el pin de forma de una tupla y
+por cada número calcula los movimientos básicos que debe realizar
+el robot para transformarlos en el lenguaje diseñado por la aplicación
+writePin.py.
+\item write\_msg\_bulk (): Esta función es utilizada por el driver del dispositivo
+USB para poder enviar un \textquotedblleft{}bulk\textquotedblright{}
+de información al USB. Para su configuración se utilizó el endpoint
+del Arduino y el que era específico de tipo bulk. Cabe mencionar que
+el Arduino presenta dos endpoints de bulk y uno de interrupción. 
+\end{itemize}
+
+\subsection*{Diseño}
+
+En lo que respecta al diseño de la construcción del programa controlador
+del robot y la parte del driver junto con el intérprete del lenguaje
+para manipular el dispositivo se tiene las siguientes etapas de diseño
+(Fig. 1):\\
+\\
+\includegraphics{pegado7}\\
+Fig. 1 Diagrama de diseño y arquitectura del programa Physical Test
+Automation.\\
+\\
+\textbf{WritePin.py}\\
+\\
+Consiste en la aplicación a nivel de usuario, que le presenta la oportunidad
+de ingresar un pin para generar el lenguaje que el intérprete deberá
+proporcionar al driver del dispositivo con la finalidad de que el
+robot se mueva de acuerdo al pin ingresado. Básicamente se genera
+un algoritmo que traduce el pin en unas primitivas básicas del lenguaje
+definido para su posterior uso en el intérprete del lenguaje.\\
+\\
+\textbf{Interprete del Lenguaje}\\
+\textbf{}\\
+{*}Lenguaje.ini: El lenguaje para el control del dispositivo se basó
+en los siguiente: 
+
+Movimientos básicos: Down, Up , Left ,Right 
+
+Variables de configuración: Adaptación de la pantalla en los ejes
+X, Y , Z. 
+
+Variables de Acción: Presionar(P), Subir (O), Click(C) y Mantener
+(M) 
+
+Variable de control: Fin movimiento ({*}), Fin Configuracion (\&)\\
+\\
+{*}Interpreter.py: Toma el lenguaje.ini definido según lo anterior
+y lo interpreta utilizando la biblioteca myRobotLibrary.so que se
+encarga de interactuar con el driver del dispositivo.\\
+\\
+{*}Biblioteca para el control del driver: myRobotLibrary.so se encarga
+de interactuar con el dispositivo /dev/myRobot el cual es el encargado
+del driver de este.\\
+\\
+\textbf{Driver del dispositivo}\\
+\textbf{}\\
+- Protocolo de comunicación: Para poder interactuar con el dispositivo
+se utilizó un intento del protocolo UART construido a partir del envío
+de cantidad de caracteres. Entonces por ejemplo: si se quería enviar
+un movimiento derecha este se asociaba a un número 2. Con esto se
+logró establecer el protocolo que por decirlo de una manera simple
+está basado en cantidad de caracteres de tipo \textquotedblleft{}a\textquotedblright{}.\\
+\\
+- Transmisión de Datos USB: Para la construcción de este módulo se
+requirió el apoyo del documento \textquotedblleft{}Writing an USB
+Driver for linux\textquotedblright{} el cual explicaba como crear
+un driver para un dispositivo de llave maya y los conceptos básicos
+de cualquier dispositivo USB. Para el análisis de este código se puede
+consultar con más detalle el el siguiente link: http://opensourceforu.efytimes.com/2011/12/data-transfers-to-from-usb-devices/
+Asimismo para montar el driver de tipo \textquotedblleft{}char\textquotedblright{}
+sobre el de USB para poder codificar la biblioteca se utilizaron ciertas
+pruebas basadas en un driver \textquotedblleft{}ebbchar\textquotedblright{}
+del autor Derek Molloy. Para mas detalle se puede consultar el link:
+http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device/\\
+\\
+- Licencia del software: Se seleccionó la licencia de tipo GPL (General
+Public License) debido a que funciona sin ninguna restricción permitiendo
+a los usuarios garantizarse que pueden usar el módulo del kernel (LKM)
+de forma gratuita. Esta alternativa permite que su LKM sea tratado
+por el kernel sin ninguna advertencia y al ser no apropiativo permite
+que sea una alternativo \textquotedblleft{}non-tainted\textquotedblright{}.
+(Derek Molloy).\\
+\\
+\textbf{Control del Hardware}\\
+\textbf{}\\
+-Comunicación Serial I2C: Para la transmisión de los datos hacia el
+hardware de LabView se utilizó el envío por medio de I2C usando dos
+arduinos con una configuración slave-master. El diseño de este circuito
+se muestra a continuación:
+
+\includegraphics{pegado3}\\
+Fig. 2 Circuito para la comunicación I2C de los arduinos.\\
+\\
+-LabView Controller: Este módulo se encarga del control absoluto de
+los motores(Lego) del dispositivo. Le indica la potencia con la cual
+deben trabajar y la velocidad de rotación de estos. 
+
+\begin{center}
+\newpage{}
+\par\end{center}
+
+
+\subsection*{Actividades realizadas por estudiante:}
+
+\begin{flushleft}
+Actividades realizadas por Melvin:
+\par\end{flushleft}
+\begin{quotation}
+\begin{flushleft}
+\includegraphics{pegado4}
+\par\end{flushleft}
+\end{quotation}
+\begin{flushleft}
+Actividades realizadas por Michael:
+\par\end{flushleft}
+\begin{quotation}
+\includegraphics{pegado5}
+\end{quotation}
+\begin{flushleft}
+Actividades realizadas por Oscar:
+\par\end{flushleft}
+\begin{quotation}
+\includegraphics{pegado6}
+\end{quotation}
+
+\subsection*{Comentarios finales (estado del programa):}
+
+Se implementó un programa en Android el cual se ejecuta en un teléfono
+inteligente, donde este programa genera códigos aleatorios de 4 dígitos,
+además mediante una interfaz gráfica es posible digitar estos valores.\\
+\\
+Se creó un Robot mediante la utilización de Legos y controlado mediante
+el software LabView, el cual es capaz de digitar números en la aplicación
+Android.\\
+\\
+Además, se implementó un programa escrito en Python el cual genera
+un conjunto de instrucciones de control para el Robot, estas instrucciones
+son generadas a partir de un código de 4 dígitos dado al programa,
+por último, se implementó un programa escrito en Python el cual interpreta
+estas instrucciones y envía al Robot la información y acciones que
+debe realizar. 
+
+\begin{center}
+\newpage{}
+\par\end{center}
+
+
+\subsection*{Conclusiones}
+\begin{itemize}
+\item Todo driver de USB en linux necesita de una capa vertical que puede
+ser de tipo \textquotedblleft{}char\textquotedblright{} o \textquotedblleft{}block\textquotedblright{}
+para interactuar con un programa en el espacio de usuario. 
+\item Los prints en el espacio de kernel se tratan de manera distinta a
+un printf en el espacio de usuario, haciendo que sea necesario la
+revisión de logs en el kernel. 
+\item Los endpoints de un dispositivo USB determinan si son de salida o
+de entrada y si les pueden enviar un paquete de información de tipo
+\textquotedblleft{}bulk\textquotedblright{} o \textquotedblleft{}interrupt\textquotedblright{}. 
+\item Todo dispositivo en linux es tratado como un archivo y por lo tanto
+se debe crear un espacio en /dev/miDispositivo. 
+\item Para proveer a una aplicación de espacio de usuario la interacción
+con el archivo descriptor del driver se necesita implementar los métodos
+de una estructura de operaciones de archivos de información. Estas
+funciones son las primitivas básicas: open, read, write, release entre
+otras. 
+\item Cuando se realiza una comunicación a través de USB con un dispositivo
+todo información debe pasar por los endpoints definidos según el fabricante
+de este. En esta se detalla su tamaño de paquete, si es de entrada
+o salida y el tiempo de \textquotedblleft{}timeout\textquotedblright{}
+máximo. 
+\end{itemize}
+
+\subsection*{Recomendaciones}
+\begin{itemize}
+\item Cuando se trabaja a nivel de Kernel una aplicación se recomienda la
+verificación constante de los logs que se encuentran en /sys/var específicamente
+el kern.log.
+\item Se recomienda evitar el uso de printk en un driver para cuando ya
+se está seguro de su funcionamiento, esto debido a que pueden ocasionar
+errores de tipo \textquotedblleft{}heisenbug\textquotedblright{} en
+los cambios de contexto y pueden afectar el envío de la información.
+\item Cuando se verifica si un driver de usb está instalado con el LKM del
+fabricante por medio de cd /dev/sys/log y cat devices se recomienda
+que el LKM propio que se desea montar aun no este activo. Con esto
+se evita que el driver del dispositivo analizado en cuestión no se
+vuelva a cargar de forma automática y se logre hacerle un rmmod para
+poder instalar el propio sin problemas.
+\item Para la compilación de las bibliotecas de python se recomienda el
+uso de estas en mayúscula y para su ejecución por medio de la terminal
+se recomienda solo el uso de python y no python3.5 para lo que sería
+esta aplicación.
+\item En el momento de probar un driver de tipo \textquotedblleft{}USB\textquotedblright{}
+se recomienda estar muy seguro de los endpoints e interfaces con las
+que trabaja el dispositivo. Por ejemplo: el arduino presenta dos interfaces
+y solamente la segunda es la que utiliza el hardware para la comunicación
+Usb-Serial. 
+\end{itemize}
+
+\subsection*{Bibliografía}
+
+{[}1{]} Molloy, D. (s.f.). derekmolloy.ie. Consultado el 20 de Noviembre
+de 2015, de \\
+http://derekmolloy.ie/writing-a-linux-kernel-module-part-1-introduction/\\
+\\
+{[}2{]} Kumar, A. (s.f.). OpenSource. Consultado el 16 de Noviembre
+de 2015, de\\
+ http://opensourceforu.efytimes.com/2011/12/data-transfers-to-from-usb-devices/
+\end{document}
