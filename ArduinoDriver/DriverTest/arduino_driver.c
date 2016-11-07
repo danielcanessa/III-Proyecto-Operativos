@@ -17,7 +17,7 @@ int arduino_send_message (char stringToSend[BUFFER_LENGTH])
 {
 	printf("Writing message to the device [%s].\n", stringToSend);
 	//ret = write(fd, "\"Hola\"", strlen(stringToSend)); // Send the string to the LKM
-	ret = write(fd, "Hola", strlen(stringToSend));
+	ret = write(fd, stringToSend, strlen(stringToSend));
 	if (ret < 0){
 		perror("Failed to write the message to the device.");
 		return errno;
