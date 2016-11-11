@@ -8,7 +8,8 @@
 int processMoveDevice(int posIni, int posFin, int nextMove)
 {
 	printf("-> Device response new move processed: -i %d -f %d -t %d\n",posIni,posFin,nextMove);  
-	//sleep(3);
+	//aqui va la logica de comunicacion con el device driver write
+	//cuando termina tiene que hacer un read y retornar 1 si todo salió bien y 0 si palmo
 	return 1; 
 }
 
@@ -18,6 +19,7 @@ int processMoveDevice(int posIni, int posFin, int nextMove)
 int processBoardDevice(int sizeBoard)
 {
 	printf("-> Device response new board processed: -b %d\n",sizeBoard);   
-	//sleep(3);
+	//aqui va la logica de comunicacion con el device driver write
+	//cuando termina tiene que hacer un read y retornar 1 si todo salió bien y 0 si palmo
 	return 1; 
 }
