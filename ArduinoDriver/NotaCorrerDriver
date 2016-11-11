@@ -1,0 +1,34 @@
+Ruta: cd Operativos/Proyectos/Proyecto3/Program/
+Para agregar el driver cuando reinicio el sistema: sudo insmod pen_driver.ko
+Compilar el test: gcc test_driver.c arduino_driver.c -o test_driver
+Se debe correr asi: sudo ./test_driver
+
+Y el test va a ir asi:
+
+#include "libarduinodriver.h"
+
+/* To shorten example, not using argp */
+int main ()
+{
+  arduino_start_com(); //Open the file of the Arduino
+  arduino_send_message ("Hola\n"); //Send this message to the arduino
+  return 0;
+}
+
+
+Para habilitar el usb:
+Ir al archivo sudo nano /etc/modprobe.d/usb-storage.conf, y borrar la linea que viene en el archivo. 
+Luego poner: sudo rmmod pen_driver
+Y luego poner: sudo modprobe usb-storage
+
+Para desabilitar el usb:
+Abrir el archivo: sudo nano /etc/modprobe.d/usb-storage.conf
+Escribir en el archivo la linea: install usb-storage /bin/true
+Reiniciar la compu
+
+
+******PASOS PARA CORRER EL DRIVER CON ARDUINO ******
+1-) Quemo la progra del arduino.
+2-) sudo rmmod cdc_acm 
+3-) sudo insmod USBDriver.ko
+4-) sudo ./test_driver
