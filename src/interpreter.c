@@ -31,7 +31,6 @@ int findSubstr(char *inpText, char *pattern)
    }
 }
 
-
 char** str_split(char* a_str, const char a_delim)
 {
     char** result    = 0;
@@ -41,7 +40,6 @@ char** str_split(char* a_str, const char a_delim)
     char delim[2];
     delim[0] = a_delim;
     delim[1] = 0;
-
     /* Count how many elements will be extracted. */
     while (*tmp)
     {
@@ -52,21 +50,16 @@ char** str_split(char* a_str, const char a_delim)
         }
         tmp++;
     }
-
     /* Add space for trailing token. */
     count += last_comma < (a_str + strlen(a_str) - 1);
-
     /* Add space for terminating null string so caller
        knows where the list of returned strings ends. */
     count++;
-
     result = malloc(sizeof(char*) * count);
-
     if (result)
     {
         size_t idx  = 0;
         char* token = strtok(a_str, delim);
-
         while (token)
         {
             assert(idx < count);
@@ -76,11 +69,8 @@ char** str_split(char* a_str, const char a_delim)
         assert(idx == count - 1);
         *(result + idx) = 0;
     }
-
     return result;
 }
-
-
 
 int processMove(char** tokens)
 {
@@ -102,11 +92,8 @@ int processMove(char** tokens)
 			    posFin = atoi(tokens[i + 1]);    				
 			}
 			if (strcmp( entry, "-t")==0)
-			{   
-				  				 
-			    char *move =tokens[i + 1];  
-			     
-			    
+			{  				  				 
+			    char *move =tokens[i + 1];  		    
 			    if (strncmp( move, "move",4)==0)
 				{
 					nextMove=0;
@@ -123,25 +110,20 @@ int processMove(char** tokens)
 				{
 					nextMove=3;
 				} 			
-			}			
-		}
-		
+			}		
+		}		
 	}	
 	if(posIni>=0 && posIni<=9 && posFin>=0 && posFin<=9 && nextMove!=-1)
 	{
-		printf("Sending to the device new move: -i %d -f %d -t %d\n",posIni,posFin,nextMove);
-		
-		int deviceResponse = processMoveDevice(posIni, posFin, nextMove);
-		
+		printf("Sending to the device new move: -i %d -f %d -t %d\n",posIni,posFin,nextMove);		
+		int deviceResponse = processMoveDevice(posIni, posFin, nextMove);		
 		if(!deviceResponse)
 		{
 			printf("bad response, check config.txt and the device connection\n");
 			exit(1);
-		}
-		
+		}		
 		result = 1;
-	}
-	
+	}	
 	return result;
 }
 
@@ -179,8 +161,7 @@ int processBoard(char** tokens)
 		{
 			printf("bad response, check config.txt and the device connection \n");
 			exit(1);
-		}
-		
+		}		
 	}	
 	return sizeBoard;
 }
@@ -196,15 +177,11 @@ int main(int argc, char **argv)
   {
     printf("Can't open config file\n");
     return 0;          
-  }
-	
-  
-
+  }	
   while (fgets(line,1000, ptr_file)!=NULL)
   {   		
 	    char** tokens;
-		tokens = str_split(line, ' ');
-		
+		tokens = str_split(line, ' ');		
 		int isMove = findSubstr(line, "move");
 	    if( isMove > -1) {		
 			if (tokens)
@@ -216,8 +193,7 @@ int main(int argc, char **argv)
 					return 0;
 				}	
 			}            
-	    }
-	    
+	    }	    
 	    int isBoard = findSubstr(line, "board");
 	    if( isBoard > -1) {		
 			if (tokens)
@@ -228,15 +204,9 @@ int main(int argc, char **argv)
 					return 0;
 				}	
 			}            
-	    }
-	    
+	    }	    
 	    free(tokens);
-
-
-    
-
-  }
-  
+  }  
   fclose(ptr_file);  
   return 0;
 }
