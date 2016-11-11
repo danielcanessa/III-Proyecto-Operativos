@@ -2,10 +2,11 @@ CC = gcc
 ouput = interpreter
 
 main:
-		$(CC) -std=gnu99 -o $(ouput) interpreter.c 
-
+		$(CC) -o deviceLibrary.o -c deviceLibrary.c
+		$(CC) -std=gnu99 -o $(ouput) interpreter.c deviceLibrary.o
 
 clean:
+		rm deviceLibrary.o
 		rm $(ouput)
 
 

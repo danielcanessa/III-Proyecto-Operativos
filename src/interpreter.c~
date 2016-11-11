@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include"deviceLibrary.h"
  
 
 //Method to find the position of a substring
@@ -81,6 +80,15 @@ char** str_split(char* a_str, const char a_delim)
 }
 
 
+void move(char* type,char* digitInit,char* digitFinal,char* size)
+{
+  printf("Type: %s, Initial Digit: %s,Final Digit: %s, Size: %s\n",type,digitInit,digitFinal,size); 
+}
+
+void loadConfiguration(char* file)
+{
+  printf("Configuration %s\n",file);
+}
 
 int processMove(char** tokens)
 {
@@ -129,16 +137,8 @@ int processMove(char** tokens)
 	}	
 	if(posIni>=0 && posIni<=9 && posFin>=0 && posFin<=9 && nextMove!=-1)
 	{
-		printf("Sending to the device new move: -i %d -f %d -t %d\n",posIni,posFin,nextMove);
-		
-		int deviceResponse = processMoveDevice(posIni, posFin, nextMove);
-		
-		if(!deviceResponse)
-		{
-			printf("bad response, check config.txt and the device connection\n");
-			exit(1);
-		}
-		
+		printf("New move: -i %d -f %d -t %d\n",posIni,posFin,nextMove);
+		//llama a la biblioteca
 		result = 1;
 	}
 	
@@ -172,15 +172,9 @@ int processBoard(char** tokens)
 		}		
 	}
 	if(sizeBoard!=0)
-	{	
-		printf("Sending to the device new board: -b %d\n",sizeBoard);		
-		int deviceResponse = processBoardDevice(sizeBoard);
-		if(!deviceResponse)
-		{
-			printf("bad response, check config.txt and the device connection \n");
-			exit(1);
-		}
-		
+	{
+		//llama a la biblioteca
+		printf("New board: -b %d\n",sizeBoard);
 	}	
 	return sizeBoard;
 }

@@ -1,0 +1,5 @@
+board -b 1x1
+move -t push -i 1 -f 10
+move -t drag -i 10 -f 2
+move -t touch -i 2 -f 8
+move -t move -i 8 -f 5
