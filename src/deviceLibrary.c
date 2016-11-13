@@ -34,17 +34,23 @@ int processMoveDevice(int posIni, int posFin, int nextMove)
 	//aqui va la logica de comunicacion con el device driver write
 	send_message_to_arduino (initialPosition); //Send this message to the arduino
     
+	while(strcmp(read_message_send_from_arduino(), "L") != 0){
+
+	}
+
     //cuando termina tiene que hacer un read y retornar 1 si todo salió bien y 0 si palmo
     messageFromArduino = read_message_send_from_arduino(); //Read the message send from the arduino
 
     if(strcmp(messageFromArduino, "L") == 0){
     	printf("Todo salio bien\n");
+    	return 1; 
     }
     else{
     	printf("Hubo un error\n");
+    	return 0; 
     }
 
-	return 1; 
+	
 }
 
 /*
@@ -69,10 +75,12 @@ int processBoardDevice(int sizeBoard)
 	messageFromArduino = read_message_send_from_arduino(); //Read the message send from the arduino
 	if(strcmp(messageFromArduino, "L") == 0){
     	printf("Todo salio bien\n");
+    	return 1; 
     }
     else{
     	printf("Hubo un error\n");
+    	return 0; 
     }
 
-	return 1; 
+	
 }

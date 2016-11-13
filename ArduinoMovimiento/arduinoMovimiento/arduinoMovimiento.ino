@@ -3,17 +3,26 @@
 Servo servoY; 
 Servo servoX;
 
+/*Initial Data */
 int isMove;
 int board;
+String inputInstruction = "";         // a string to hold incoming data
+int posIni = 0; //contains the initial position
+int posFin = 0; //contains the final position
+int nextMove = 0; //contains the next move
+int sizeBoard = 0; //contains the size of the board
+boolean instructionComplete = false;  // whether the string is complete
+
+
 void setup()
 {
    Serial.begin(9600);
-   servoY.attach(10);
-   servoX.attach(11); 
+   //servoY.attach(10);
+   //servoX.attach(11); 
    isMove=1;
    board=1;
+   inputInstruction.reserve(200);
 }
-
 
 
 //Servo y, 1cm=10
@@ -128,35 +137,67 @@ void move(int posIni, int posFin)
      
 }
 
-int itera=1;
+//int itera=1;
 void loop()
 {
-  if(itera)
-  {  
-    //362960
-    move(0,3);
-    delay(1000);
-    isMove=1;
-    move(3,6);
-    delay(1000);
-    isMove=1;
-    move(6,2);
-    delay(1000);
-    isMove=1;
-    move(2,9);
-    delay(1000);
-    isMove=1;
-    move(9,6);
-    delay(1000);
-    isMove=1;
-    move(6,0);
-    delay(1000);
-    itera=0;
+//  if(itera)
+//  {  
+//    //362960
+//    move(0,3);
+//    delay(1000);
+//    isMove=1;
+//    move(3,6);
+//    delay(1000);
+//    isMove=1;
+//    move(6,2);
+//    delay(1000);
+//    isMove=1;
+//    move(2,9);
+//    delay(1000);
+//    isMove=1;
+//    move(9,6);
+//    delay(1000);
+//    isMove=1;
+//    move(6,0);
+//    delay(1000);
+//    itera=0;
+//}
+//   delay(1000); 
 }
-  
 
+/*
+ * This method is going to run simultaneously with the loop()
+ */
+void serialEventRun(void) {
+  serialEvent();
+}
 
+/*
+ * This method is going to see if there is new data in the USB Port
+ * 
+ */
+void serialEvent() {
+  while (Serial.available()) {
+    char inChar = (char)Serial.read();
+    inputInstruction += inChar;
+    instructionComplete = false;
+    
+    if(inputInstruction.length() == 5 && inputInstruction != "Board"){ 
+      posIni = inputInstruction[0] - '0';
+      posFin = inputInstruction[2] - '0';
+      nextMove = inputInstruction[4] - '0';
+      isMove=1;
+      move(posIni,posFin);
+    //  isMove=1;
+      Serial.write("L");
+      inputInstruction = "";
+    }
+  if(inputInstruction.length() == 7){ 
+      sizeBoard = inputInstruction[6] - '0';
+      board = sizeBoard;
+      Serial.write("L");
+      inputInstruction = "";
+    }
+  }
  
-  delay(1000);   
-     
 }
