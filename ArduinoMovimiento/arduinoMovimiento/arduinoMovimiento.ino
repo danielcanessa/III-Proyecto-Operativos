@@ -15,12 +15,33 @@ boolean instructionComplete = false;  // whether the string is complete
 int currentZ = 0;
 
 
+<<<<<<< HEAD
 void setup()
 {
    Serial.begin(9600);   
    isMove=1;
    board=1;
    currentZ=0;
+=======
+/*Initial Data */
+int isMove;
+int board;
+String inputInstruction = "";         // a string to hold incoming data
+int posIni = 0; //contains the initial position
+int posFin = 0; //contains the final position
+int nextMove = 0; //contains the next move
+int sizeBoard = 0; //contains the size of the board
+boolean instructionComplete = false;  // whether the string is complete
+
+
+void setup()
+{
+   Serial.begin(9600);
+   //servoY.attach(10);
+   //servoX.attach(11); 
+   isMove=1;
+   board=1;
+>>>>>>> origin/master
    inputInstruction.reserve(200);
 }
 
