@@ -19,7 +19,7 @@ void setup()
 {
    Serial.begin(9600);   
    isMove=1;
-   board=1;
+   board=2;
    currentZ=0;
    inputInstruction.reserve(200);
 }
@@ -168,8 +168,8 @@ void move(int posIni, int posFin)
     }
     else if(board==2)
     {
-      moveX(castNumberX(posIni),castNumberX(posFin),6);
-      moveY(castNumberY(posIni), castNumberY(posFin), 10);      
+      moveX(castNumberX(posIni),castNumberX(posFin),11);
+      moveY(castNumberY(posIni), castNumberY(posFin), 20);      
     }
     else if(board==3)
     {
@@ -202,32 +202,34 @@ void move(int posIni, int posFin)
      
 }
 
-//int itera=1;
+int itera=1;
 void loop()
 {
-//  if(itera)
-//  {  
-//    //362960
-//    move(0,3);
-//    delay(1000);
-//    isMove=1;
-//    move(3,6);
-//    delay(1000);
-//    isMove=1;
-//    move(6,2);
-//    delay(1000);
-//    isMove=1;
-//    move(2,9);
-//    delay(1000);
-//    isMove=1;
-//    move(9,6);
-//    delay(1000);
-//    isMove=1;
-//    move(6,0);
-//    delay(1000);
-//    itera=0;
+ // if(itera)
+ // {  
+    //362960
+   //move(0,3);
+   // isMove=1;
+  //  move(9,0);
+   /* delay(1000);
+    isMove=1;
+    move(3,6);
+    delay(1000);
+    isMove=1;
+    move(6,2);
+    delay(1000);
+    isMove=1;
+    move(2,9);
+    delay(1000);
+    isMove=1;
+    move(9,6);
+    delay(1000);
+    isMove=1;
+    move(6,0);
+    delay(1000);
+    itera=0;*/
 //}
-//   delay(1000); 
+  // delay(1000); 
 }
 
 /*
