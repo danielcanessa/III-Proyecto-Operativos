@@ -1,9 +1,9 @@
 CC = gcc
 ouput = interpreter
 
-main:
-		$(CC) -o deviceLibrary.o -c deviceLibrary.c
-		$(CC) -std=gnu99 -o $(ouput) interpreter.c deviceLibrary.o
+main:			
+		$(CC) -o deviceLibrary.o -c deviceLibrary.c 
+		$(CC) -std=gnu99 -o $(ouput) interpreter.c ArduinoDriver.c deviceLibrary.o
 
 clean:
 		rm deviceLibrary.o
