@@ -16,8 +16,8 @@ void loop()
     if (Serial.available() > 0) {
       char inChar = (char)Serial.read();
         if( inChar == 'a'){
-          servoX.attach(10);
-          servoX.write(45);
+          servoX.attach(12);
+          servoX.write(180);
         }
         else if( inChar == 'd'){
           servoX.attach(10);

@@ -97,12 +97,14 @@ void moveZ(int dir)
     if(dir)
     {
       val = 45;
+      currentZ=1;
     }
     else
     {
       val = 180;
+      currentZ=0;
     }   
-    for (int i=0; i < 10; i++)
+    for (int i=0; i < 2; i++)
     {
       servoZ.write(val); 
       delay(1000);
@@ -156,10 +158,10 @@ void move(int posIni, int posFin)
 {
   if(isMove)
   {
-    /*if(nextMove==3) //drag
+    if(nextMove==3) //drag
     {
       moveZ(1);
-    }*/
+    }
 
     if(board==1)
     {
@@ -177,7 +179,7 @@ void move(int posIni, int posFin)
       moveY(castNumberY(posIni), castNumberY(posFin), 10);      
     }
     
-    /*if(nextMove==1) //touch
+    if(nextMove==1) //touch
     {
       moveZ(1);
       delay(1000);
@@ -195,7 +197,7 @@ void move(int posIni, int posFin)
     {
       moveZ(0);
     }
-    */
+    
     
     isMove=0;  
   }
@@ -205,8 +207,19 @@ void move(int posIni, int posFin)
 int itera=1;
 void loop()
 {
- // if(itera)
- // {  
+ /* if(itera)
+  {  
+    //nextMove=2;
+    board=1;
+    move(5,0);*/
+    
+   /* moveZ(1);
+    delay(3000);
+    isMove=1;
+    moveZ(0);
+    delay(5000);*/
+  //  itera=0;
+ // }
     //362960
    //move(0,3);
    // isMove=1;
