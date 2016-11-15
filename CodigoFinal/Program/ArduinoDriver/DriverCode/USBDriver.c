@@ -332,7 +332,7 @@ static int __init usb_init(void)
 	return result;
 }
 
-//This functions is in charged of unregister the usb_driver
+//This function is in charged of unregister the usb_driver
 static void __exit usb_exit(void)
 {
 	/* unregister this driver with the USB subsystem */
