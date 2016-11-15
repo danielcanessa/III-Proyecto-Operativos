@@ -326,7 +326,7 @@ Introduction
 
 \series bold
 \size large
-Threads and scheduling overview
+Device drivers
 \end_layout
 
 \begin_layout Standard
@@ -340,202 +340,141 @@ For the development of this project is important define some concepts, these
 \begin_layout Itemize
 \noindent
 \align block
-Process: defines the address space, text, resources, etc.
+Process management: The kernel is in charge of creating and destroying processes
+ and handling their connection to the outside world.
  [1]
 \end_layout
 
 \begin_layout Itemize
 \noindent
 \align block
-Thread: defines a single sequential execution stream within a process (PC,
- stack, registers).
- The threads extract the thread of control information from the process,
- also the threads are bound to a single process.[1]
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-Some important features of a thread are: each process may have multiple
- threads of control within it, the address space of a process is shared
- among all its threads , no system calls are required to cooperate among
- threads, simpler than message passing and shared-memory.
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-Operating Systems can support one or many address spaces, and one or many
- threads per address space.
- Therea are two kinds of threads implementation:
+Memory management: The computer’s memory is a major resource, and the policy
+ used to deal with it is a critical one for system performance.[1]
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-Kernel Threads: also known as a lightweight process, is a thread that the
- operating system knows about.
- Switching between kernel threads of the same process requires a small context
- switch, the values of registers, program counter, and stack pointer must
- be changed.
- The memory management information does not need to be changed since the
- threads share an address space.
- As well the kernel must manage and schedule threads (as well as processes),
- but it can use the same process scheduling algorithms.
- It is important to note that switching between kernel threads is slightly
- faster than switching between processes.
+Filesystems: Unix is heavily based on the filesystem concept; almost everything
+ in Unix can be treated as a file.
  [1]
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-User-Level Threads: a user-level thread is a thread that the OS does not
- know about.
- The OS only knows about the process containing the threads, also the OS
- only schedules the process, not the threads within the process.
- The programmer uses a thread library to manage threads (create and delete
- them, synchronize them, and schedule them).
+Device control: Almost every system operation eventually maps to a physical
+ device.
+ With the exception of the processor, memory, and a very few other entities,
+ any and all device control operations are performed by code that is specific
+ to the device being addressed.
+ That code is called a device driver.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Networking: Networking must be managed by the operating system, because
+ most network operations are not specific to a process: incoming packets
+ are asynchronous events.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Loadable modules: One of the good features of Linux is the ability to extend
+ at runtime the set of fea- tures offered by the kernel.
+ This means that you can add functionality to the kernel while the system
+ is up and running.
+ Each piece of code that can be added to the kernel at runtime is called
+ a module.
+ The Linux kernel offers support for quite a few different types of modules,
+ including, but not limited to, device drivers.
+ Each module is made up of object code that can be dynamically linked to
+ the run- ning kernel by the insmod program and can be unlinked by the rmmod
+ program.
  [1]
 \end_layout
 
 \begin_layout Standard
 \noindent
 \align block
-Comparing the user-level threads with the kernel threads, we get some advantages
- and disadvantages:
+The Linux way of looking at devices distinguishes between three fundamental
+ device types.
+ Each module usually implements one of these types, and thus is classifiable
+ as a char module, a block module, or a network module.
+ The three classes of modules are:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Character devices: A character device is one that can be accessed as a stream
+ of bytes; a char driver is in charge of implementing this behavior.
+ Such a driver usu- ally implements at least the open, close, read, and
+ write system calls.
+ The text console (/dev/console) and the serial ports are examples of char
+ devices, as they are well represented by the stream abstraction.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Block devices: Like char devices, block devices are accessed by filesystem
+ nodes in the /dev directory.
+ A block device is a device that can host a filesystem.
+ In most Unix systems, a block device can only handle I/O operations that
+ transfer one or more whole blocks, which are usually 512 bytes in length.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Network interfaces: Usually, an interface is a hardware device, but it might
+ also be a pure software device, like the loopback interface.
+ A network interface is in charge of sending and receiving data packets,
+ driven by the network subsystem of the kernel, without knowing how individual
+ transactions map to the actual packets being transmitted.[1]
 \end_layout
 
 \begin_layout Standard
-\noindent
-\align block
-Advantages User-Level Threads: [2]
+Every USB device is driven by a USB module that works with the USB subsystem,
+ but the device itself shows up in the system as a char device, a block
+ device, or a network device.
+ The Linux kernel supports two main types of USB drivers: drivers on a host
+ system and drivers on a device.
+ The USB drivers for a host system control the USB devices that are plugged
+ into it, from the host’s point of view.
+ The USB drivers in a device, control how that single device looks to the
+ host computer as a USB device.
+ The approach to writing a USB device driver consist that the driver registers
+ its driver object with the USB subsystem and later uses vendor and device
+ identifiers to tell if its hardware has been installed.
+ USB devices consist of configurations, interfaces, and endpoints:
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-There is no context switch involved when switching threads.
- 
+Endpoints: The most basic form of USB communication is through something
+ called an endpoint.
+ A USB endpoint can carry data in only one direction, either from the host
+ computer to the device or from the device to the host computer.[1]
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-The user-level thread scheduling is more flexible.
- 
+Interfaces: USB endpoints are bundled up into interfaces.
+ USB interfaces handle only one type of a USB logical connection, such as
+ a mouse, a keyboard, or a audio stream.[1]
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-A user-level code can define a problem dependent thread scheduling policy.
+Configurations: USB interfaces are themselves bundled up into configurations.
+ A USB device can have multiple configurations and might switch between
+ them in order to change the state of the device.
+ [1]
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-Each process might use a different scheduling algorithm for its own threads.
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-A thread can voluntarily give up the processor by telling the scheduler
- it will yield to other threads.
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-User-level threads do not require system calls to create them or context
- switches to move between them thread management calls are library calls
- and much faster than system calls made by kernel threads.
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-User-level threads are typically much faster than kernel threads
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-Disadvantages User-Level Threads: [2]
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Since the OS does not know about the existence of the user-level threads,
- it may make poor scheduling decisions:
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\noindent
-\align block
-It might run a process that only has idle threads.
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-If a user-level thread is waiting for I/O, the entire process will wait.
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Solving this problem requires communication between the kernel and the user-leve
-l thread manager.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\noindent
-\align block
-Since the OS just knows about the process, it schedules the process the
- same way as other processes, regardless of the number of user threads.
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-For kernel threads, the more threads a process creates, the more time slices
- the OS will dedicate to it.
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-Scheduling is the method by which work specified by some means is assigned
- to resources that complete the work.
- The work may be virtual computation elements such as threads, processes
- or data flows, which are in turn scheduled onto hardware resources such
- as processors.
- A scheduler is what carries out the scheduling activity.
- Schedulers are often implemented so they keep all computer resources busy
- (as in load balancing), allow multiple users to share system resources
- effectively, or to achieve a target quality of service.
- Scheduling is fundamental to computation itself, and an intrinsic part
- of the execution model of a computer system; the concept of scheduling
- makes it possible to have computer multitasking with a single central processin
-g unit (CPU).
- A scheduler may aim at one of many goals, for example, maximizing throughput,
- minimizing response time, or minimizing latency, maximizing fairness.
- In practice, these goals often conflict, thus a scheduler will implement
- a suitable compromise.
- The scheduler is selected, depending upon the user's needs and objectives.
- [3]
+USB Urbs: The USB code in the Linux kernel communicates with all USB devices
+ using something called a urb.
+ This request block is described with the struct urb structure and can be
+ found in the include/linux/usb.h file.
+ A urb is used to send or receive data to or from a specific USB endpoint
+ on a specific USB device in an asynchronous manner.
+ [1]
 \end_layout
 
 \begin_layout Standard
@@ -550,177 +489,105 @@ Project specification
 \begin_layout Standard
 \noindent
 \align block
-The first part of the project is reimplemented the pthreads library except
- that the new library is going to be user-level threads.
- The methods that the new library (mypthreads) must have are: mythread_create,
- mythread_end, mythread_yield, mythread_join, mythread_detach, mymutex_init,
- mymutex_destroy, mymutex_lock, mymutex_unlock, mythread_setsched and mymutex_tr
-ylock.
- The schedulers that are going to manage mypthreads are:
+The first part of the project is to create a robotic finger, using any desired
+ embedded device.
+ Its a decision of the programmers to choose the physical interface to interact
+ with the computer, it can be any of the following: USB, Parallel port,
+ or communications port (COM).
+ This robotic finger will be used to automate physical tests over a smart
+ phone or tablet.
+ It will be interacting with the screen of the corresponding smart phone
+ or tablet emulating a human finger.
+ The following kind of instructions are going to be available:
 \end_layout
 
 \begin_layout Itemize
 \noindent
 \align block
-Round Robin Scheduler: this scheduler follows the Round Robin algorithm.
+Touch: on this kind of instruction the robotic finger will approach the
+ screen, touch the screen and then will reverse to its initial position.
 \end_layout
 
 \begin_layout Itemize
 \noindent
 \align block
-Lottery Scheduler: this scheduler follows the lottery scheduling algorithm.
- The threads created using this scheduler may need extra parameters, for
- example: the amount of initial tickets.
- 
+Push: on this kind of instruction, the robotic finger is going to approach
+ the screen and is going to touch it during a specified amount of time,
+ then it will reverse to its initial position.
 \end_layout
 
 \begin_layout Itemize
 \noindent
 \align block
-Real time scheduler: this scheduler follows a Real Time algorithm.
- The threads created using this scheduler may need extra parameters, like
- for example: time limit.
+Drag: on this kind of instruction, the robotic finger is going to 1) approach
+ the screen, 2) is going to touch the screen and 3) move the finger in any
+ of the X and Y axes while the finger it's still pushing the screen.
+ Once done, 4) it will reverse the finger to its original position.
 \end_layout
 
 \begin_layout Standard
 \noindent
 \align block
-The second part of the project consists in develop a bridge simulation using
- the threads and the schedulers implemented in the first part, the explanation
- of the second part is as follows.
- There are three different bridges located in one of the cities.
- These bridges are one way bridges, which means the cars can transit over
- any of these bridges one way at a time.
- Each of those bridges can work with any of the following three methods
- to control the traffic:
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Transit officer: this is going to determine when a car from any of the sides
- of the bridge can access the bridge allowing K cars from one side of the
- bridge and then K cars from the other side of the bridge (repeating this
- behavior).
- If at some moment the queue of cars in one of the sides of a bridge is
- empty but the other one has cars waiting to access the bridge, then the
- access to the side of the bridge with queued cars will be granted even
- when the amount of K cars has not been reached.
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Access to the bridge is controlled by a semaphore (red and green lights).
- We will have a semaphore in each side of the bridge, when it's green in
- one side, it will be red in the other one.
- The semaphore will be green during a certain amount of time in seconds
- which will be customized by the user at the beginning of the program execution.
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Access to the bridge is not controlled at all (jungle law).
- The drivers (well educated and respectful of the law) can decide when to
- access the bridge following these conditions: 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\noindent
-\align block
-A car can only access the bridge if the bridge it's empty or if there are
- no cars circulating in the opposite way (to avoid collisions).
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-A car can only access the bridge if the amount of cars allowed to circulate
- over the bridge is not exceeded (according to the bridge length).
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\noindent
-\align block
-There are 3 diferent kinds of cars, the description of the cars are below:
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Normal cars: this type of cars will not have any special treatment to get
- its access to the bridge.
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Ambulances: this type of cars will use a real time algorithm (soft) to schedule
- its access to the bridge with some kind of priority.
- 
-\end_layout
-
-\begin_layout Itemize
-\noindent
-\align block
-Radioactive cars: this type of cars will use a real time algorithm(hard)
- to schedule its access to the bridge.
- If this type of cars don't arrive to their destination quick, it will be
- a catastrophic.
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-Also a simulation of the described problem should be implemented.
- Each entity (cars, semaphores, ambulances, transit officers, etc) will
- be represented by a thread that will be taking care of updating the correspondi
-ng data structures used in the solution of this project.
- The user should be able to easily customize which traffic control method
- will be used to manage each of the bridges.
- Messages should be displayed at console level reporting each of the events
- that are happening in each of the 3 bridges.
- These messages should be very detailed in order to understand what's exactly
- happening in each of the bridges.
+The second part of the project consists in develop a device driver in C
+ programming language that will be working on any Linux Operating System.
+ This device driver will take care of providing to the upper layers several
+ primitives that will allow the interaction with the physical device.
  
 \end_layout
 
 \begin_layout Standard
 \noindent
 \align block
-The third part of the project consists in the creation of a circuit, using
- any desired embedded device, that is going to interact with the threadbridge
- program to produce a physical simulation of the different bridges.
- The simulation should include the following:
+The third part of the project consists in create a library in any desired
+ language.
+ This library will allow the implementation of the functions provided by
+ the device driver, this means this library will be the one interacting
+ directly with the device driver specified in the above point.
+ It will be required to describe a common language that will let us describe
+ any of the instructions specified in section A .
+ This language will have to manage the following concepts:
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-The physical representation of the bridges.
+Instruction type (touch, push, drag).
+\end_layout
+
+\begin_layout Itemize
+X,Y initial position.
+\end_layout
+
+\begin_layout Itemize
+X,Y final position.
+\end_layout
+
+\begin_layout Standard
+The fourth part of the project consists in develop a program that will implement
+ the small language just described and will make possible the configuration/setu
+p of the robotic finger.
+\end_layout
+
+\begin_layout Standard
+The fifth part of the project consists in develop a physical test program
+ to test the robotic finger functionality.
+ It will consists of a numerical keyboard (similar to the one used by the
+ BNCR in its Internet banking).
+ The software is going to generate a random PIN of 6 digits and the robotic
+ finger should type this PIN in order to pass the physical test.
+ The program is going to have several screen resolutions:
+\end_layout
+
+\begin_layout Itemize
+1x1: This is the minimal screen resolution.
+ It will divide the screen in 1cmx1cm matrices.
  
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-When a car is passing through a bridge, the representation that reflects
- the car is passing.
+2x2: It will divide the screen in 2cmx2cm matrices.
 \end_layout
 
 \begin_layout Itemize
-\noindent
-\align block
-Differentiate normal cars , from ambulances and from radioactive cars.
+4x4: It will divide the screen in 4cmx4cm matrices.
 \end_layout
 
 \begin_layout Standard
@@ -740,20 +607,27 @@ Development environment
 \end_layout
 
 \begin_layout Itemize
-\noindent
 The program was developed using Ubuntu 15.04.
  
 \end_layout
 
 \begin_layout Itemize
-\noindent
 Sublime 3, this is a very popular code editor, besides give some tools that
  makes the development of the code easier than other idles.
+ 
 \end_layout
 
 \begin_layout Itemize
-\noindent
 GCC was used to compile the programs using the 6.1 version.
+ 
+\end_layout
+
+\begin_layout Itemize
+Arduino Idle 1.6.7.
+\end_layout
+
+\begin_layout Itemize
+App Inventor 2.
 \end_layout
 
 \begin_layout Standard
@@ -777,45 +651,47 @@ We divided the project on 3 parts:
 \end_layout
 
 \begin_layout Itemize
-Threads and scheduler: reseraching on internet and with the class material
- we develop the threads and the schedulers.
- The first approach was develop two kinds of schedulers, the lottery and
- the round robin both real time, althought we find several problems doing
- the join of the threads with the bridges.
- To solve this problem we divide the scheduler on three types: round robin,
- lottery and real time, we decided that if exist one real time thread all
- the other threads will be ignored, and only the real time thread will be
- schedule.
- That solution comes with another problem, if we stop the threads when a
- real time thread was created, can be posible get a dead lock.
- We implement a counter, if this counter is reached by a continius real
- time thread, we schedule sound robin and lottery too, even if a real time
- thread still alive.
+Software: The software that handles the communication with the device, is
+ divided in three main blocks.
+ The interpreter, the device library and finally the device driver.
+ All together allow a communication with the hardware.
+ First the interpreter, this block is in charge of interpreting the instructions
+ written on the config file, this means that after reading the file , we
+ should know the board size and the differents moves to create complete
+ the pin on the phone.
+ The interpreter use the device library which is the other big block, this
+ one have the methods that process the board information and the diferentes
+ moves that it can make, like drag , push or touch, those both methods will
+ send the information to the arduino using the last block, the arduino driver.
+ The arduino driver make the communication with the physical device possible.
+ This block read and write in the device allowing the information of the
+ board to be received by the hardware.
+ .
 \end_layout
 
 \begin_layout Itemize
-Bridges and cars: when we finish the threads and schedulers development,
- we start the implementation of this part.
- There are three bridges, every one have one left queue and one right queue,
- each queue have cars.
- Each bridge is a thread on the officer method and the semaphore method,
- but in the jungle law method the bridge is only a struct.
- All the cars are threads, if the car is normal the scheduler is round robin,
- if the car is ambulance the scheduler is lottery and if the car is radioactive
- the scheduler is real time.
- In the jungle bridges, we show the real behavior of the schedulers, in
- the semaphore and the officer there is a controller thread that controls
- the dinamic of the bridge.
- Each car manage their own movement.
+Hardware: To design the finger robot we use an ATMEGA 328 microcontroller,
+ because it give us the necessary ports for the servo motors, allowing us
+ to control the servos.
+ To design the finger movement we base our design to work like a CNC or
+ a plotter.
+ The servo motor are attached to some roles which generates the movement.
+ For the X and Y axes move, the servo move a base in the corresponding direction.
+ So this means that the x servo moves his base and the Y axe base and the
+ Y servo moves only in his direction.
+ For the Z axe, we attached a servo as the X and Y cases, but in this case
+ is placed vertically.
+ So this means that the phone is moving with the base in the X and Y direction
+ and the finger in the Z direction.
 \end_layout
 
 \begin_layout Itemize
-Hardware: we decided use an ATMEGA 328 microcontroler, because it give us
- the necesary ports, the power consuption is reduce and there are several
- examples of how connect the arduino uno with C.
- Also we use neo pixels instead of normals leds, neopixel give us a lot
- of advantages than simple leds, and the most important, the economic part
- of the project was similar if we bought leds or if we bought neopixels.
+Physical test software: we decide to make an Android application using the
+ App Inventor tool, because the functionality of the application is easy
+ and because App Inventor give us all the necessary widgets we need to develop
+ the application.
+ We decided to use Android because all of us have Android smartphones, so
+ we can make the tests with our phones.
 \end_layout
 
 \begin_layout Standard
@@ -842,518 +718,335 @@ Program design
 
 \series bold
 \size large
-Description of the code
+USB driver code
 \end_layout
 
 \begin_layout Standard
 The development team have tried to use the best programming practices, in
  this way the code reutilization was fundamental in this project building.
- The project contains the following common files: Bridge.h, BridgeController.h,
- Car.h, Car_List.h, Car_Queue.h, ContextManage.h, Dispatcher.h, Interfaz.h, Mutex.h,
- readFile.h, Scheduler.h, TCB.h, Thread.h.
+ The project contains the following common files: USBDriver.c, ArduinoDriverLibra
+ry.h.
  The description of this files is as follows:
 \end_layout
 
 \begin_layout Itemize
-Bridge.h: this file contains all the structures that a bridge needs.
+USBDriver.c: this file contains all the structures, interfaces and functions
+ of the USB driver.
  
 \end_layout
 
 \begin_layout Itemize
-BridgeController.h: this file contains all the necessary methods to control
- all of the bridges.
- 
-\end_layout
-
-\begin_layout Itemize
-Car.h: this file contains all the structures that a car needs.
- 
-\end_layout
-
-\begin_layout Itemize
-Car_List.h: this file contains all the methods to manipulate a list of cars.
- 
-\end_layout
-
-\begin_layout Itemize
-Car_Queue.h: this file contains all the methods to manipulate a queue of
- cars.
- 
-\end_layout
-
-\begin_layout Itemize
-ContextManage.h: this file contains the function is needed to make a change
- of context.
- 
-\end_layout
-
-\begin_layout Itemize
-Dispatcher.h: this file contains the methods that is needed to save the actual
- context of a thread and call the function that makes the change of context.
- 
-\end_layout
-
-\begin_layout Itemize
-Interfaz.h: this file contains the function that is needed to create the
- animation of the cars and the bridges.
- 
-\end_layout
-
-\begin_layout Itemize
-Mutex.h: this file contains the structure that forms a mutex.
- 
-\end_layout
-
-\begin_layout Itemize
-readFile.h: this file contains all the structures needed to load all of the
- parameters of the configuration file.
- 
-\end_layout
-
-\begin_layout Itemize
-Scheduler.h: this file contains all the structures and functions needed to
- execute the Round Robin scheduler, the Lottery scheduler and the Real Time
- scheduler.
- 
-\end_layout
-
-\begin_layout Itemize
-TCB.h: this file contains all the structures that a thread needs.
- 
-\end_layout
-
-\begin_layout Itemize
-Thread.h: this file contains all the functions that my_threads library have.
+ArduinoDriverLibrary.h: this file contains all the functions that interacts
+ with the USB driver functions.
  
 \end_layout
 
 \begin_layout Standard
-Bridge.h have the following methods:
+USBDriver.c have the following methods:
 \end_layout
 
 \begin_layout Itemize
-Bridge* createBridge( BridgeSide* brigdeLeftSide, BridgeSide* brigdeRightSide,Br
-igdeController brigdeController): This method is going to create the bridge
- with all the parameters especified by the user.
+static int usb_open(struct inode *inode, struct file *file): This method
+ is going to open the file corresponding with the Arduino.
 \end_layout
 
 \begin_layout Itemize
-BridgeSide* createBridgeSide(int length, int carSpeed, int semaphoreTime,
- int KCars,int ambulancePercentage, int radioactivePercentage,Car_Queue*
- queue): This method is going to create the structure that contains all
- of the data need it on one side of the bride.
+static void usb_delete(struct kref *kref): This method is going to create
+ the structure that contains all of the data need it on one side of the
+ bride.
+\end_layout
+
+\begin_layout Itemize
+static ssize_t usb_read(struct file *file, char __user *buffer, size_t count,
+ loff_t *ppos): This function is use to read information send by the device.
+\end_layout
+
+\begin_layout Itemize
+static void usb_write_bulk_callback(struct urb *urb): After the urb is successfu
+lly transmitted to the USB device, this function is called by the USB core.
+\end_layout
+
+\begin_layout Itemize
+static ssize_t usb_write(struct file *file, const char __user *user_buffer,
+ size_t count, loff_t *ppos): This function is in charged of write data
+ to the device.
+\end_layout
+
+\begin_layout Itemize
+static int usb_probe(struct usb_interface *interface, const struct usb_device_id
+ *id): The probe function is called when a device is installed that the
+ USB core thinks this driver should handle; the probe function should perform
+ checks on the information passed to it about the device and decide whether
+ the driver is really appropriate for that device.
+\end_layout
+
+\begin_layout Itemize
+static void usb_disconnect(struct usb_interface *interface): The disconnect
+ function is called when the driver should no longer control the device
+ for some reason and can do clean-up.
+\end_layout
+
+\begin_layout Itemize
+static int __init usb_init(void): This functions is in charged of register
+ the USB driver.
+\end_layout
+
+\begin_layout Itemize
+static void __exit usb_exit(void): This function is in charged of unregister
+ the USB driver.
 \end_layout
 
 \begin_layout Standard
-BridgeController.h have the following methods:
+ArduinoDriverLibrary.h have the following methods:
 \end_layout
 
 \begin_layout Itemize
-void initBridgeController(): Initialize all the queues.
+int send_message_to_arduino (char stringToSend[256]): This function is going
+ to send a message to the arduino file.
 \end_layout
 
 \begin_layout Itemize
-Direction traficOfficerController(Bridge* bridge): This method is only called
- when a change of direction is necessary.
-\end_layout
-
-\begin_layout Itemize
-void *traficOfficerThread(void *bridgeId): This method is responsible for
- executing the method of transit officer.
-\end_layout
-
-\begin_layout Itemize
-void addCarsToBridge(Bridge* mBridge, Direction direction): This method
- takes care of adding cars to the list of cars that are crossing the bridge
- at that time.
-\end_layout
-
-\begin_layout Itemize
-void *jungleLaw(void *mCar): This method is going to implement the jungle
- law mechanism.
-\end_layout
-
-\begin_layout Itemize
-void *fillCarsJungle(void *arg): Fills the queue of the bridges.
-\end_layout
-
-\begin_layout Itemize
-void addCarsToBridgeJungle(Bridge* bridge, Direction direction, Car * actualCar
- ): This method add cars to the bridge when the bridge execute the jungle
- law.
-\end_layout
-
-\begin_layout Itemize
-void *semaphoreThread(void *bridgeId): This method implements the semaphore
- control.
+char* read_message_send_from_arduino(): This function is going to read a
+ message send from the arduino.
 \end_layout
 
 \begin_layout Standard
-Car.h have the following methods:
-\end_layout
 
-\begin_layout Itemize
-Car* createCar(CarType carType, int carSpeed, int idBridge, QueueSide queueSide,
- int bridgePos): This method is going to create the car with all the parameters
- especified by the user.
-\end_layout
-
-\begin_layout Itemize
-void* moveCarThread(void *mCar): This method is going to move the car when
- the car is moving across the bridge.
+\series bold
+\size larger
+Android application
 \end_layout
 
 \begin_layout Standard
-Car_List.h have the following methods:
+For the physical test program, we develop an Android app with the following
+ functions:
 \end_layout
 
 \begin_layout Itemize
-Car_list* Car_list_create(): This method is going to create and initialize
- the list of cars.
- 
+checkPin: this method is in charge of check if the pin introduced by the
+ robotic finger is correct.
 \end_layout
 
 \begin_layout Itemize
-int Car_list_is_empty(Car_list* Car_list): This method is going to check
- if the list of cars is empty.
-\end_layout
-
-\begin_layout Itemize
-int Car_list_add(Car_list* Car_list, Car* Car): This method is going to
- add cars on the list.
-\end_layout
-
-\begin_layout Itemize
-Car* Car_list_remove(Car_list* Car_list, int bridgePos): This method is
- going to remove a car from the list.
- 
-\end_layout
-
-\begin_layout Itemize
-Car* Car_list_get(Car_list* Car_list, int pos): This method is going to
- get a car from the list.
- 
-\end_layout
-
-\begin_layout Itemize
-void printList(Car_list* carList): This method is goint to print the list
- of cars.
- 
-\end_layout
-
-\begin_layout Itemize
-int verifyRadioActiveonList(Car_list* Car_list,QueueSide queueSide): This
- method is going verify if there is a radioactive car on the list .
-\end_layout
-
-\begin_layout Itemize
-void moveCarsOnBridge(Car_list* carList): This method is going to move the
- cars across the bridge.
+concatenatePin: this method is in charge of update the pin introduced by
+ the robotic finger.
 \end_layout
 
 \begin_layout Standard
-Car_Queue.h have the following methods:
+
+\series bold
+\size larger
+Interpreter
+\end_layout
+
+\begin_layout Standard
+The interpreter was developed in C programing languaje.
+ The interpreter reads an file called config.txt, this file is the input
+ of the interpreter, in this file there are some instructions compatible
+ con the interpreter, the interpreter reads the instructions, for each instructi
+on it detects what kind is this and descompose it, finally the interpreter
+ generates his output, that is call the appropiate method of the device
+ library, that is going to handle the descompose instruction.
+\end_layout
+
+\begin_layout Standard
+There are two types of instruction, the board instruction and the move instructi
+on.
 \end_layout
 
 \begin_layout Itemize
-Car_Queue* Car_Queue_create(): This method is going to create and initialize
- the queue.
- 
+Board instruction: this type of instruction indicates the size of the board.
 \end_layout
 
 \begin_layout Itemize
-int Car_Queue_is_empty(Car_Queue* car_list): This method is going to check
- if the queue is empty.
- 
+Move instruction: this type of instruction indicates the kind of movement
+ (push, drag, touch), the current position of the robotic finger and the
+ final position of the robotic finger (target position).
+\end_layout
+
+\begin_layout Standard
+The interpreter is composed by 4 methods, these methods are described below:
 \end_layout
 
 \begin_layout Itemize
-int EnqueueCar(Car_Queue* Car_Queue, Car* car): This method is going to
- add a car to the queue.
- 
+findSubstr: this method receibe a char array and a pattern, it return the
+ position where the pattern is find in the array.
 \end_layout
 
 \begin_layout Itemize
-Car* DequeueCar(Car_Queue* Car_Queue): This method is going to extract a
- car from the queue.
- 
+str_split: this method receibe a char array, split the array in chars and
+ return a list of arrays.
 \end_layout
 
 \begin_layout Itemize
-int Car_Queue_contains(Car_Queue* Car_Queue, Car* car): This method is going
- to check if the queue have an specific car.
- 
+processMove: this method gets the information of the movement and call the
+ device library.
 \end_layout
 
 \begin_layout Itemize
-Car* Car_Queue_get(Car_Queue* Car_Queue, int idCar): This method is going
- to get a car from the queue.
- 
+processBoard: this method gets the information of the board and call the
+ device library.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Device Library
+\end_layout
+
+\begin_layout Standard
+The device library was developed in C programing language.
+ The device library has an input from the interpreter and comunicates with
+ the device driver like an output.
+ The device library is composed by 2 methods, these methods are described
+ below:
 \end_layout
 
 \begin_layout Itemize
-void printQueue(Car_Queue* Car_Queue): This method is going to print the
- queue.
- 
+processMoveDevice: this method call the device driver, it sends nextMove:
+ 1 if the move is touch, 2 if the move is push, 3 if the move is drag, posFin
+ and posIni a number in the range 0-9.
 \end_layout
 
 \begin_layout Itemize
-Car_Queue* fillQueueJungle(Car_Queue* Queue,float ambulancePercentage, float
- radioactivePercentage, int averageSpeedCar, int averageSpeedAmbulance,
- int averageSpeedRadioactiveCar,int carAmount, int idBridge, QueueSide queueSide
-, int bridgePos): This method is going to fill the queue of the jungle law.
- 
-\end_layout
-
-\begin_layout Itemize
-Car* carJungleRemove(Car_Queue* car_Queue, int idCar): This method is going
- to remove the cars of the queue of the jungle law.
+processBoardDevice: this method call the device driver, it sends size board:
+ 1 if the board is 1x1, 2 if the board is 2x2, 3 if the board is 4x4.
  
 \end_layout
 
 \begin_layout Standard
-ContextManage.h have the following methods:
-\end_layout
 
-\begin_layout Itemize
-ucontext_t* make_context(void *(*function)(void *), void* arg, ucontext_t*
- link): This method is going to create a new context each time a thread
- is created a new context is created.
+\series bold
+\size larger
+Language
 \end_layout
 
 \begin_layout Standard
-Dispatcher.h have the following methods:
-\end_layout
+The language designed to control the interpreter have the syntax 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_layout Itemize
-void Dispatch(TCB* thread): This method is going to make a change of context.
-\end_layout
+type_instruction -parameters
+\begin_inset Quotes erd
+\end_inset
 
-\begin_layout Itemize
-int Save(TCB* thread): This method is going to save the thread context of
- the thread that receives as a parameter.
-\end_layout
-
-\begin_layout Standard
-Interfaz.h have the following methods:
-\end_layout
-
-\begin_layout Itemize
-void* animatedThreadBridge(void * x_void_ptr): It is responsible for conducting
- the animation 
-\end_layout
-
-\begin_layout Itemize
-void initCarsOnBridge(): Initialize all the structs.
+, the specification is as follows:
 \end_layout
 
 \begin_layout Standard
-Mutex.h have the following methods:
+Setting the board:
 \end_layout
 
 \begin_layout Itemize
-mutext* mutext_create(): This method is going to initialize the mutext.
+board -b sizeBoard, where size board can be 1x1, 2x2 or 3x3
 \end_layout
 
 \begin_layout Standard
-readFile.h have the following methods:
+Doing a movement:
 \end_layout
 
 \begin_layout Itemize
-void initConfigFile(): This method read all the parameters of the configuration
- file.
+move -t typeofmovement -i initialPosition -f finalPosition, where typeofmovement
+ can be touch, drag or push, initialPosition can be an integer in the range
+ of 0-9, finalPosition can be an integer in the range of 0-9.
 \end_layout
 
 \begin_layout Standard
-Scheduler.h have the following methods:
-\end_layout
 
-\begin_layout Itemize
-int initScheduler(): This method is going to initialize all of the structs
- need it for the scheduler 
-\end_layout
-
-\begin_layout Itemize
-int create(ucontext_t* newcontext, Scheduler scht, int,int): this method
- is going to create the thread 
-\end_layout
-
-\begin_layout Itemize
-int ready(TCB* thread): this method returns the id of the thread 
-\end_layout
-
-\begin_layout Itemize
-int startQuantum(int ms): this method initialize the quantum 
-\end_layout
-
-\begin_layout Itemize
-void stopQuantum(): this method is going to stop the quantum 
-\end_layout
-
-\begin_layout Itemize
-void pause_timer(): this method is going to pause the timer 
-\end_layout
-
-\begin_layout Itemize
-void threadKill(TCB* thread): this method kill threads 
-\end_layout
-
-\begin_layout Itemize
-TCB* running(): indicates which thread is running
-\end_layout
-
-\begin_layout Itemize
-TCB* getNextRoundRobin(): get the next thread of the round robin queue 
-\end_layout
-
-\begin_layout Itemize
-TCB* getNextRaffle(): get the thread that wins the lottery
-\end_layout
-
-\begin_layout Itemize
-int sleepThread(TCB*, int): this method sleep the thread 
-\end_layout
-
-\begin_layout Itemize
-TCB* findTCB(int tid): find a thread by the TID 
-\end_layout
-
-\begin_layout Itemize
-int joinThreadtoThread(TCB* thread, TCB* waited_for): this method calls
- TCB_BLOCK 
-\end_layout
-
-\begin_layout Itemize
-void unblock_waiting_for_me(TCB* thread): calls the unblock function 
-\end_layout
-
-\begin_layout Itemize
-void unblock(TCB* thread, TCB* waited_for): unblock the thread specified
- by TID 
-\end_layout
-
-\begin_layout Itemize
-int joinThread(TCB* thread, int waitID): calls TCB_BLOCK 
-\end_layout
-
-\begin_layout Itemize
-int ditachThread(int): calls the function unblock_waiting_for_me
-\end_layout
-
-\begin_layout Itemize
-int getMaxTickets(): get the amount of tickets 
-\end_layout
-
-\begin_layout Itemize
-TCB* getWinner(int ticket): received the winner ticket and find who win
- the lottery
+\series bold
+\size larger
+Arduino code
 \end_layout
 
 \begin_layout Standard
-TCB.h have the following methods:
-\end_layout
-
-\begin_layout Itemize
-TCB* TCB_create(int thread_id, ucontext_t* context, Scheduler scht, State
- state, int,int): This method creates the thread.
- 
-\end_layout
-
-\begin_layout Itemize
-int TCB_equals(TCB* t1, TCB* t2): This method check if two threads are equal.
-\end_layout
-
-\begin_layout Itemize
-int TCB_block(TCB* waiting_thread, TCB* blocking_thread): This method blocks
- a thread.
- 
-\end_layout
-
-\begin_layout Itemize
-int TCB_unblock(TCB* waiting_thread, TCB* blocking_thread): This method
- removes a thread from the join queue of threads.
- 
-\end_layout
-
-\begin_layout Itemize
-int TCB_is_blocked(TCB* thread): This method check if a thread is blocked.
- 
+For the arduino code, we have this two methods that get how much they have
+ to move using the formula |posIni - posFin|*separation, so with this formula
+ the servo will know how much to move.
 \end_layout
 
 \begin_layout Standard
-Thread.h have the following methods:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void moveX(int posIni, int posFin, int separation)
 \end_layout
 
-\begin_layout Itemize
-int mythread_create(void *(*function)(void *), Scheduler scht, int tickets,
- void *arg,int): This method creates a new thread.
- 
+\begin_layout Plain Layout
+
+void moveY(int posIni, int posFin, int separation).
 \end_layout
 
-\begin_layout Itemize
-int mythread_init(): This method initializes all the structs at the beginning.
- 
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-void mythread_join(int waitTID): This method suspends execution of the calling
- thread until the target thread terminates, unless the target thread has
- already terminated.
+\begin_layout Standard
+The arduino use this method to create the Z movement, the dir parameter
+ means if is going up or down.
 \end_layout
 
-\begin_layout Itemize
-int mythread_end(): This method kills the thread.
- 
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void moveZ(int dir).
 \end_layout
 
-\begin_layout Itemize
-void mythread_sleep(int): This method is sleep the thread for an amount
- of time.
- 
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-int mythread_detach(int tid): This method detach a thread.
- 
+\begin_layout Standard
+The arduino use the cast method to simplify the matrix, so it map the position
+ and return a generic position.
 \end_layout
 
-\begin_layout Itemize
-int mythread_id(): This method gets the thread TID.
- 
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int castNumberY(int number) 
 \end_layout
 
-\begin_layout Itemize
-void mythread_setsched(): This method set the scheduler to the thread.
- 
+\begin_layout Plain Layout
+
+int castNumberX(int number)
 \end_layout
 
-\begin_layout Itemize
-void mythread_yield(): This method yield the processor.
- 
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-mutext* mymutex_init(): Initialize the mutext.
- 
+\begin_layout Standard
+The arduino reads the information coming for the device library.
 \end_layout
 
-\begin_layout Itemize
-int mymutex_lock(mutext* mt): This method get the lock.
- 
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void serialEvent()
 \end_layout
 
-\begin_layout Itemize
-int mymutex_unlock(mutext* mt): This method release the lock.
- 
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-int mymutex_trylock(mutext* mt): This method checks if there is a lock.
- 
-\end_layout
 
-\begin_layout Itemize
-int mymutex_destroy(mutext* mt): This method destroy the mutex.
 \end_layout
 
 \begin_layout Standard
@@ -1371,7 +1064,7 @@ UML Diagram
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename ../../../../../Proyecto2/Documentacion/Documentation/images/proyecto2.pdf
+	filename images/operativos.pdf
 	scale 50
 
 \end_inset
@@ -1402,27 +1095,23 @@ Diagrams of the physical simulation
 \end_layout
 
 \begin_layout Standard
-For the physical circuit we use an Arduino Uno as the microprocessor which
- controls the leds and also is in charge of the communication with the C
- code.
- For the leds we use and NeoPixel with an array of 8 leds, because we can
- control all the leds with just one digital output signal.
- Those leds are RGB so we also can control the color of all of them.
+To design the finger robot we use an ATMEGA 328 microcontroller, because
+ it give us the necessary ports for the servo motors, allowing us to control
+ the servos.
+ To design the finger movement we base our design to work like a CNC or
+ a plotter.
+ The servo motor are attached to some roles which generates the movement.
  
 \end_layout
 
 \begin_layout Standard
-The microcontroller contain a list for all the bridges, which is being full
- by the C Code through the serial port.
- These communication is slow, so we can only update the leds every two seconds.
- 
-\end_layout
-
-\begin_layout Standard
-As an improve of the code, we used to send a message for all the leds making
- the cars move very slow.
- After we only send one message per bridge improving the performance of
- the circuit.
+For the X and Y axes move, the servo move a base in the corresponding direction.
+ So this means that the x servo moves his base and the Y axe base and the
+ Y servo moves only in his direction.
+ For the Z axe, we attached a servo as the X and Y cases, but in this case
+ is placed vertically.
+ So this means that the phone is moving with the base in the X and Y direction
+ and the finger in the Z direction.
 \end_layout
 
 \begin_layout Standard
@@ -1431,7 +1120,8 @@ As an improve of the code, we used to send a message for all the leds making
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename ../../../../../Proyecto2/Documentacion/Documentation/images/Schematic.pdf
+	filename images/operativos_schem.pdf
+	scale 50
 
 \end_inset
 
@@ -1445,7 +1135,7 @@ Figure 2.
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename ../../../../../Proyecto2/Documentacion/Documentation/images/arduino.pdf
+	filename images/operativos_bb.pdf
 	scale 50
 
 \end_inset
@@ -1481,27 +1171,21 @@ Instructions of how to use the program
 \begin_layout Enumerate
 Compile the project using the command make.
  In the root folder.
- This will create an execuatable called ThreadBridge.
+ This will create an executable called Interpreter.
 \end_layout
 
 \begin_layout Enumerate
-To run the project only with terminal use the follow line on the terminal.
- $./ThreadBridge n
+Run the script that configure the driver, place in the root folder and write
+ in terminal $sh mountDriver.sh
 \end_layout
 
 \begin_layout Enumerate
-To run the project with GUI use the follow line on the terminal.
- $./ThreadBridge n graphicmode 
-\end_layout
-
-\begin_layout Enumerate
-To run the project with physic simulation use the follow line on the terminal.
- $./ThreadBridge n realmode
+To run the project use the follow line on the terminal.
+ $./Interpreter configFile, where configFile, represents the file that have
+ all the instructions to execute.
 \end_layout
 
 \begin_layout Standard
-Where n, represents the car amount that will be created each exponential
- time, if n is no give it, n will be setted to 10.
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1534,7 +1218,7 @@ Daniels Activity Log
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="3">
+<lyxtabular version="3" rows="10" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1573,7 +1257,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-30/09/2016
+5/11/2016
 \end_layout
 
 \end_inset
@@ -1582,7 +1266,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-6
+7
 \end_layout
 
 \end_inset
@@ -1591,7 +1275,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-Threads investigation
+Interpreter Development
 \end_layout
 
 \end_inset
@@ -1602,181 +1286,7 @@ Threads investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-01/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Threads development
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-03/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Threads development
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-04/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Schedulers development
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-05/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Schedulers development
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-06/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Car queue development
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-07/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Semaphore, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-08/10/2016
+6/11/2016
 \end_layout
 
 \end_inset
@@ -1794,7 +1304,7 @@ Bridge Controller Logic, Semaphore, Jungle
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bridge Controller Logic, Semaphore, Jungle
+Interpreter Development
 \end_layout
 
 \end_inset
@@ -1805,7 +1315,65 @@ Bridge Controller Logic, Semaphore, Jungle
 \begin_inset Text
 
 \begin_layout Plain Layout
-09/10/2016
+9/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Device Library Deveploment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Device Library Deveploment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/11/2016
 \end_layout
 
 \end_inset
@@ -1823,7 +1391,7 @@ Bridge Controller Logic, Semaphore, Jungle
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bridge Controller Logic, Jungle
+Arduino Software
 \end_layout
 
 \end_inset
@@ -1834,123 +1402,7 @@ Bridge Controller Logic, Jungle
 \begin_inset Text
 
 \begin_layout Plain Layout
-10/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-11/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Report on terminal
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Report on terminal
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-13/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Physical representation
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-14/10/2016
+12/11/2016
 \end_layout
 
 \end_inset
@@ -1960,6 +1412,64 @@ Physical representation
 
 \begin_layout Plain Layout
 5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Software
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Calibration
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
 \end_layout
 
 \end_inset
@@ -1988,7 +1498,7 @@ Total
 \begin_inset Text
 
 \begin_layout Plain Layout
-94h
+50h
 \end_layout
 
 \end_inset
@@ -2016,7 +1526,7 @@ Edwards Activity Log
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="3">
+<lyxtabular version="3" rows="8" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2055,7 +1565,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-30/09/2016
+6/11/2016
 \end_layout
 
 \end_inset
@@ -2073,7 +1583,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-Threads Investigation
+Finger Physical Device Investigation
 \end_layout
 
 \end_inset
@@ -2084,7 +1594,36 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-01/10/2016
+9/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Finger Physical Investigation and buying materials
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/11/2016
 \end_layout
 
 \end_inset
@@ -2102,7 +1641,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-Threads Investigation
+Using servo motors to move rols
 \end_layout
 
 \end_inset
@@ -2113,7 +1652,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-03/10/2016
+11/11/2016
 \end_layout
 
 \end_inset
@@ -2122,7 +1661,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-10
+15
 \end_layout
 
 \end_inset
@@ -2131,7 +1670,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-Start the logic of threads
+Creating the CNC model
 \end_layout
 
 \end_inset
@@ -2142,7 +1681,7 @@ Start the logic of threads
 \begin_inset Text
 
 \begin_layout Plain Layout
-04/10/2016
+12/11/2016
 \end_layout
 
 \end_inset
@@ -2151,7 +1690,7 @@ Start the logic of threads
 \begin_inset Text
 
 \begin_layout Plain Layout
-4
+8
 \end_layout
 
 \end_inset
@@ -2160,7 +1699,7 @@ Start the logic of threads
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bridge Controller Logic, Trafic
+Using the Machine with the drivers
 \end_layout
 
 \end_inset
@@ -2171,7 +1710,7 @@ Bridge Controller Logic, Trafic
 \begin_inset Text
 
 \begin_layout Plain Layout
-05/10/2016
+14/11/2016
 \end_layout
 
 \end_inset
@@ -2189,268 +1728,7 @@ Bridge Controller Logic, Trafic
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bridge Controller Logic, Trafic
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-06/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Insert Cars to Queues
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-07/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic,Trafic
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-08/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-7
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Semaphore, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-09/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Buying Hardware Components and testing 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-11/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Arduino Comunication
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Arduino Comunication and testing with hardware
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-13/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Arduino Comunication and documentation
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-14/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Documentation and Testing
+Making the Z movement
 \end_layout
 
 \end_inset
@@ -2470,7 +1748,7 @@ Total
 \begin_inset Text
 
 \begin_layout Plain Layout
-91h
+49h
 \end_layout
 
 \end_inset
@@ -2498,7 +1776,7 @@ Felipes Activity Log
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="3">
+<lyxtabular version="3" rows="9" columns="3">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -2537,7 +1815,94 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-30/09/2016
+05/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driver Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driver Investigation and Implementation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+09/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Robotic Finger Design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/11/2016
 \end_layout
 
 \end_inset
@@ -2555,7 +1920,7 @@ Activity
 \begin_inset Text
 
 \begin_layout Plain Layout
-Threads Investigation
+USB Driver and Arduino communication
 \end_layout
 
 \end_inset
@@ -2566,7 +1931,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-01/10/2016
+12/11/2016
 \end_layout
 
 \end_inset
@@ -2584,7 +1949,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-Threads Investigation
+Robotic Finger communication and application design
 \end_layout
 
 \end_inset
@@ -2595,94 +1960,7 @@ Threads Investigation
 \begin_inset Text
 
 \begin_layout Plain Layout
-03/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Threads Investigation
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-04/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Trafic
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-05/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Trafic
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-06/10/2016
+14/11/2016
 \end_layout
 
 \end_inset
@@ -2700,7 +1978,7 @@ Bridge Controller Logic, Trafic
 \begin_inset Text
 
 \begin_layout Plain Layout
-Graphical design
+Physical test software and Robotic Finger test
 \end_layout
 
 \end_inset
@@ -2711,7 +1989,7 @@ Graphical design
 \begin_inset Text
 
 \begin_layout Plain Layout
-07/10/2016
+15/11/2016
 \end_layout
 
 \end_inset
@@ -2729,210 +2007,7 @@ Graphical design
 \begin_inset Text
 
 \begin_layout Plain Layout
-Graphical design
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-08/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Semaphore, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-09/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-8
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bridge Controller Logic, Jungle
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Buying Hardware Components and testing 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-11/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Graphical design
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-15
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Graphical design
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-13/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Arduino Comunication and documentation
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-14/10/2016
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Documentation
+Documentation and testing
 \end_layout
 
 \end_inset
@@ -2952,7 +2027,7 @@ Total
 \begin_inset Text
 
 \begin_layout Plain Layout
-99h
+48h
 \end_layout
 
 \end_inset
@@ -2999,20 +2074,10 @@ Project final status
 \end_layout
 
 \begin_layout Standard
-The project is completed satisfactorily, there are only two issues that
- can be perform in the future:
-\end_layout
-
-\begin_layout Itemize
-Slow communication between C and the ATMEGA 328, takes 2 seconds between
- each data to be sended.
- This is a hardware limitation, with a more powerfull hardware this can
- be solved.
-\end_layout
-
-\begin_layout Itemize
-The car speed is the same for all the cars, limitations on the graphical
- mode, made that we set the same speed for all the cars.
+The project is completed satisfactorily, the only issue is the board of
+ 4x4 have a size that exceed the phone screen size, for this reazon we can't
+ show the correct funtionability, but all the software and hardware support
+ this board.
 \end_layout
 
 \begin_layout Standard
@@ -3025,38 +2090,18 @@ Conclusions
 \end_layout
 
 \begin_layout Itemize
-The threads allow implementing multiprogramming, where in a given time interval
- it can run different programs parts.
+All the USB drivers needs a “char” or “block” interface to communicate with
+ the program in the user space.
 \end_layout
 
 \begin_layout Itemize
-The mutext allows only a shared resource can be accessed by different threads
- one at a time.
+The endpoints of a device determinate if the USB is an output or input,
+ and you cand send bulk or interrupt information to them.
 \end_layout
 
 \begin_layout Itemize
-The threads in user space are implemented by dividing the thread given by
- the operating system in different contexts running and exchanged periodically.
-\end_layout
-
-\begin_layout Itemize
-Scheduling algorithms allow the implementation of different ways of choosing
- the next thread to run in a multithreaded execution.
-\end_layout
-
-\begin_layout Itemize
-The soft real-time schedulers seek the full implementation of a thread does
- not exceed its deadline, to prioritize the order of execution threads that
- are soon to reach their deadline.
-\end_layout
-
-\begin_layout Itemize
-The use of the yield method for handling wire enables easy implementation
- of semaphores in animations.
-\end_layout
-
-\begin_layout Itemize
-Depending of the method of serial comunication it can takes long time.
+Using a library abstract the programs how the hardware works and improve
+ the efficiency of using that hardware.
 \end_layout
 
 \begin_layout Standard
@@ -3069,20 +2114,24 @@ Recommendations
 \end_layout
 
 \begin_layout Itemize
-It is recommended to implement a function of sleep when a thread library
- in user space is created, because if the sleep function C is used all the
- threads and not just the thread that called the function stop.
+The generic CNC design allows an excellent 3 dimensional movement.
+ 
 \end_layout
 
 \begin_layout Itemize
-It is recommended to use u_context_t class in C to implement a library of
- threads, this help with the context switching.
+To avoid the friction created by the wood and steel pieces is recommended
+ to increase the roles in the axes, taking in mind that this will increase
+ the project price.
 \end_layout
 
 \begin_layout Itemize
-It is recommended to look how much it is needed the speed of the serial
- communication, if this is a requeriment look for another mechanism of communica
-tion.
+It's important to unmount the driver of the device, before mount your driver
+ for that same device.
+\end_layout
+
+\begin_layout Itemize
+Create a script that unmount and mount the drivers , this will make it easier
+ to use.
 \end_layout
 
 \begin_layout Standard
@@ -3108,33 +2157,10 @@ References
 \begin_layout Standard
 \noindent
 \align block
-[1]P.
- Shenoy, "CMPSCI 377: Operating Systems (Fall 2016)", University of MassachuseIs
-, 2016.
- [Online].
- Available: http://lass.cs.umass.edu/~shenoy/courses/fall16/lectures/Lec06.pdf.
- [Accessed: 14- Oct- 2016].
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-[2]C.
- Baue, "User and Kernel Level Threads", Cs.iit.edu, 2016.
- [Online].
- Available: http://www.cs.iit.edu/~cs561/cs450/ChilkuriDineshThreads/dinesh's%20fil
-es/User%20and%20Kernel%20Level%20Threads.html.
- [Accessed: 14- Oct- 2016].
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align block
-[3]S.
- Keshav, "Scheduling", Cornell University, 2014.
- [Online].
- Available: http://www.cs.cornell.edu/skeshav/book/slides/scheduling/scheduling.pdf.
- [Accessed: 14- Oct- 2016].University
+[1] A.
+ Rubini and J.
+ Corbet, Linux device drivers, 1st ed.
+ Sebastopol: O'Reilly & Associates, 2001.
 \end_layout
 
 \end_body
