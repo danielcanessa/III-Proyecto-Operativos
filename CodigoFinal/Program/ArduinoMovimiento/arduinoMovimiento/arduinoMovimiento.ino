@@ -175,8 +175,8 @@ void move(int posIni, int posFin)
     }
     else if(board==3)
     {
-      moveX(castNumberX(posIni),castNumberX(posFin),6);
-      moveY(castNumberY(posIni), castNumberY(posFin), 10);      
+      moveX(castNumberX(posIni),castNumberX(posFin),26);
+      moveY(castNumberY(posIni), castNumberY(posFin), 44);      
     }
     
     if(nextMove==1) //touch
