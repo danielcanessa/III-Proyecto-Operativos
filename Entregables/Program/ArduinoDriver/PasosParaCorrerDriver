@@ -1,5 +1,0 @@
-******PASOS PARA CORRER EL DRIVER CON ARDUINO ******
-1-) Quemo la progra del arduino.
-2-) sudo rmmod cdc_acm 
-3-) sudo insmod USBDriver.ko
-4-) sudo ./test_driver
