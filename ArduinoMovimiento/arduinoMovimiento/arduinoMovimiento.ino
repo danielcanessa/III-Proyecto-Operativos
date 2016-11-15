@@ -165,13 +165,13 @@ void move(int posIni, int posFin)
 
     if(board==1)
     {
-      moveX(castNumberX(posIni),castNumberX(posFin),6);
-      moveY(castNumberY(posIni), castNumberY(posFin), 10);      
+      moveX(castNumberX(posIni),castNumberX(posFin),8);
+      moveY(castNumberY(posIni), castNumberY(posFin), 16);      
     }
     else if(board==2)
     {
-      moveX(castNumberX(posIni),castNumberX(posFin),11);
-      moveY(castNumberY(posIni), castNumberY(posFin), 20);      
+      moveX(castNumberX(posIni),castNumberX(posFin),13);
+      moveY(castNumberY(posIni), castNumberY(posFin), 22);      
     }
     else if(board==3)
     {
@@ -207,18 +207,31 @@ void move(int posIni, int posFin)
 int itera=1;
 void loop()
 {
- /* if(itera)
+  /*if(itera)
   {  
-    //nextMove=2;
+    nextMove=1;
+    board=2;
+    move(4,0);*/
+   // isMove=1;
+   /* nextMove=1;
     board=1;
-    move(5,0);*/
-    
-   /* moveZ(1);
-    delay(3000);
+    move(3,5);
     isMove=1;
+    nextMove=2;
+    board=1;
+    move(5,2);
+    isMove=1;
+    nextMove=3;
+    board=1;
+    move(2,7);*/
+    
+  // currentZ=1;
+  //  moveZ(0);
+  //  delay(3000);
+  /*  isMove=1;
     moveZ(0);
     delay(5000);*/
-  //  itera=0;
+    //itera=0;
  // }
     //362960
    //move(0,3);
