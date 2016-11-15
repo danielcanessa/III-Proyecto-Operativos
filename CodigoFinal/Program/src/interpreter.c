@@ -178,8 +178,18 @@ int processBoard(char** tokens)
 }
 
 int main(int argc, char **argv) 
-{  
-  char * filedir ="config.txt";
+{ 
+  char * filedir;	
+  if(argv[1]!=NULL)
+  {
+	  filedir = argv[1];
+  } 
+  else
+  {
+	  printf("Default file config.txt\n");
+	  filedir ="config.txt";	  
+  }  
+ 
   FILE *ptr_file;
   char line[1000];  
   ptr_file =fopen(filedir,"r");   
