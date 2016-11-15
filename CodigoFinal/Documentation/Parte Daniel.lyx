@@ -1,0 +1,163 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\series bold
+\size largest
+Program Design
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Interpreter
+\end_layout
+
+\begin_layout Standard
+The interpreter was developed in C programing languaje.
+ The interpreter reads an file called config.txt, this file is the input
+ of the interpreter, in this file there are some instructions compatible
+ con the interpreter, the interpreter reads the instructions, for each instructi
+on it detects what kind is this and descompose it, finally the interpreter
+ generates his output, that is call the appropiate method of the device
+ library, that is going to handle the descompose instruction.
+\end_layout
+
+\begin_layout Standard
+There are two types of instruction, the board instruction and the move instructi
+on.
+\end_layout
+
+\begin_layout Itemize
+Board instruction: this type of instruction indicates the size of the board.
+\end_layout
+
+\begin_layout Itemize
+Move instruction: this type of instruction indicates the kind of movement
+ (push, drag, touch), the current position of the robotic finger and the
+ final position of the robotic finger (target position).
+\end_layout
+
+\begin_layout Standard
+The interpreter is composed by 4 methods, these methods are described below:
+\end_layout
+
+\begin_layout Itemize
+findSubstr: this method receibe a char array and a pattern, it return the
+ position where the pattern is find in the array.
+\end_layout
+
+\begin_layout Itemize
+str_split: this method receibe a char array, split the array in chars and
+ return a list of arrays.
+\end_layout
+
+\begin_layout Itemize
+processMove: this method gets the information of the movement and call the
+ device library.
+\end_layout
+
+\begin_layout Itemize
+processBoard: this method gets the information of the board and call the
+ device library.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Device Library
+\end_layout
+
+\begin_layout Standard
+The device library was developed in C programing language.
+ The device library has an input from the interpreter and comunicates with
+ the device driver like an output.
+ The device library is composed by 2 methods, these methods are described
+ below:
+\end_layout
+
+\begin_layout Itemize
+processMoveDevice: this method call the device driver, it sends nextMove:
+ 1 if the move is touch, 2 if the move is push, 3 if the move is drag, posFin
+ and posIni a number in the range 0-9.
+\end_layout
+
+\begin_layout Itemize
+processBoardDevice: this method call the device driver, it sends size board:
+ 1 if the board is 1x1, 2 if the board is 2x2, 3 if the board is 4x4.
+ 
+\end_layout
+
+\end_body
+\end_document

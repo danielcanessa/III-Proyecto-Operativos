@@ -5,7 +5,9 @@
 #include"deviceLibrary.h"
  
 
-//Method to find the position of a substring
+/*
+findSubstr: this method receibe a char array and a pattern, it return the position where the pattern is find in the array.
+*/
 int findSubstr(char *inpText, char *pattern)
 {
   int inplen = strlen(inpText);
@@ -31,6 +33,9 @@ int findSubstr(char *inpText, char *pattern)
    }
 }
 
+/*
+str_split: this method receibe a char array, split the array in chars and return a list of arrays.
+*/
 char** str_split(char* a_str, const char a_delim)
 {
     char** result    = 0;
@@ -72,6 +77,9 @@ char** str_split(char* a_str, const char a_delim)
     return result;
 }
 
+/*
+processMove: this method gets the information of the movement and call the device driver.
+*/
 int processMove(char** tokens)
 {
 	int result=0;
@@ -127,6 +135,9 @@ int processMove(char** tokens)
 	return result;
 }
 
+/*
+processBoard: this method gets the information of the board and call the device driver.
+*/
 int processBoard(char** tokens)
 {
 	int sizeBoard = 0;

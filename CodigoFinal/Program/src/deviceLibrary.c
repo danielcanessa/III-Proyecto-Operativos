@@ -8,7 +8,7 @@
 #define BUFFER_LENGTH 256
 
 /*
-  nextMove: 0 si es move, 1 si es touch, 2 si es push, 3 si es drag
+  processMoveDevice: this method call the device driver, it sends nextMove: 1 if the move is touch, 2 if the move is push, 3 if the move is drag, posFin and posIni a number in the range 0-9
 */
 int processMoveDevice(int posIni, int posFin, int nextMove)
 {
@@ -54,7 +54,7 @@ int processMoveDevice(int posIni, int posFin, int nextMove)
 }
 
 /*
- size board: 1 si es 1x1, 2 si es 2x2, 3 si es 4x4
+  processBoardDevice: this method call the device driver, it sends size board: 1 if the board is 1x1, 2 if the board is 2x2, 3 if the board is 4x4
 */
 int processBoardDevice(int sizeBoard)
 {
