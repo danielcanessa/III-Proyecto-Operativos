@@ -1,0 +1,2169 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Costa Rica Institute of Technology
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Computer Engineering Academic Area
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Licentiate Degree Program in Computer Engineering
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Course: CE-4303 – Operating Systems Principles
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset Graphics
+	filename ../../../../../Proyecto2/Documentacion/Documentation/images/logo_tec.png
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Project #3: Robotic Finger
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Made by:
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Daniel Gerardo Canessa Valverde, 201137483
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Felipe Alberto Mejías Loría, 201231682
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Edward Umaña Williams, 201128403
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Professor:
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Jennifer Vargas Gonzalez.
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Date: November 15th, 2016
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Introduction 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size large
+Device drivers
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+For the development of this project is important define some concepts, these
+ concepts are going to be used along of this document.
+ Some of the concepts are below:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Process management: The kernel is in charge of creating and destroying processes
+ and handling their connection to the outside world.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Memory management: The computer’s memory is a major resource, and the policy
+ used to deal with it is a critical one for system performance.[1]
+\end_layout
+
+\begin_layout Itemize
+Filesystems: Unix is heavily based on the filesystem concept; almost everything
+ in Unix can be treated as a file.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Device control: Almost every system operation eventually maps to a physical
+ device.
+ With the exception of the processor, memory, and a very few other entities,
+ any and all device control operations are performed by code that is specific
+ to the device being addressed.
+ That code is called a device driver.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Networking: Networking must be managed by the operating system, because
+ most network operations are not specific to a process: incoming packets
+ are asynchronous events.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Loadable modules: One of the good features of Linux is the ability to extend
+ at runtime the set of fea- tures offered by the kernel.
+ This means that you can add functionality to the kernel while the system
+ is up and running.
+ Each piece of code that can be added to the kernel at runtime is called
+ a module.
+ The Linux kernel offers support for quite a few different types of modules,
+ including, but not limited to, device drivers.
+ Each module is made up of object code that can be dynamically linked to
+ the run- ning kernel by the insmod program and can be unlinked by the rmmod
+ program.
+ [1]
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The Linux way of looking at devices distinguishes between three fundamental
+ device types.
+ Each module usually implements one of these types, and thus is classifiable
+ as a char module, a block module, or a network module.
+ The three classes of modules are:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Character devices: A character device is one that can be accessed as a stream
+ of bytes; a char driver is in charge of implementing this behavior.
+ Such a driver usu- ally implements at least the open, close, read, and
+ write system calls.
+ The text console (/dev/console) and the serial ports are examples of char
+ devices, as they are well represented by the stream abstraction.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Block devices: Like char devices, block devices are accessed by filesystem
+ nodes in the /dev directory.
+ A block device is a device that can host a filesystem.
+ In most Unix systems, a block device can only handle I/O operations that
+ transfer one or more whole blocks, which are usually 512 bytes in length.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+Network interfaces: Usually, an interface is a hardware device, but it might
+ also be a pure software device, like the loopback interface.
+ A network interface is in charge of sending and receiving data packets,
+ driven by the network subsystem of the kernel, without knowing how individual
+ transactions map to the actual packets being transmitted.[1]
+\end_layout
+
+\begin_layout Standard
+Every USB device is driven by a USB module that works with the USB subsystem,
+ but the device itself shows up in the system as a char device (a USB serial
+ port, say), a block device (a USB memory card reader), or a network device
+ (a USB Ethernet interface).
+ The Linux kernel supports two main types of USB drivers: drivers on a host
+ system and drivers on a device.
+ The USB drivers for a host system control the USB devices that are plugged
+ into it, from the host’s point of view (a common USB host is a desk- top
+ computer.) The USB drivers in a device, control how that single device looks
+ to the host computer as a USB device.
+ The approach to writing a USB device driver consist that the driver registers
+ its driver object with the USB subsystem and later uses vendor and device
+ identifiers to tell if its hardware has been installed.
+ USB devices consist of configurations, interfaces, and endpoints:
+\end_layout
+
+\begin_layout Itemize
+Endpoints: The most basic form of USB communication is through something
+ called an endpoint.
+ A USB endpoint can carry data in only one direction, either from the host
+ computer to the device (called an OUT endpoint) or from the device to the
+ host com- puter (called an IN endpoint).[1]
+\end_layout
+
+\begin_layout Itemize
+Interfaces: USB endpoints are bundled up into interfaces.
+ USB interfaces handle only one type of a USB logical connection, such as
+ a mouse, a keyboard, or a audio stream.[1]
+\end_layout
+
+\begin_layout Itemize
+Configurations: USB interfaces are themselves bundled up into configurations.
+ A USB device can have multiple configurations and might switch between
+ them in order to change the state of the device.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+USB Urbs: The USB code in the Linux kernel communicates with all USB devices
+ using something called a urb (USB request block).
+ This request block is described with the struct urb structure and can be
+ found in the include/linux/usb.h file.
+ A urb is used to send or receive data to or from a specific USB endpoint
+ on a specific USB device in an asynchronous manner.
+ [1]
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size large
+Project specification
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The first part of the project is to create a robotic finger, using any desired
+ embedded device.
+ Its a decision of the programmers to choose the physical interface to interact
+ with the computer, it can be any of the following: USB, Parallel port,
+ or communications port (COM).
+ This robotic finger will be used to automate physical tests over a smart
+ phone or tablet.
+ It will be interacting with the screen of the corresponding smart phone
+ or tablet emulating a human finger.
+ The following kind of instructions are going to be available:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Touch: on this kind of instruction the robotic finger will approach the
+ screen, touch the screen and then will reverse to its initial position.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Push: on this kind of instruction, the robotic finger is going to approach
+ the screen and is going to touch it during a specified amount of time,
+ then it will reverse to its initial position.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Drag: on this kind of instruction, the robotic finger is going to 1) approach
+ the screen, 2) is going to touch the screen and 3) move the finger in any
+ of the X and Y axes while the finger it's still pushing the screen.
+ Once done, 4) it will reverse the finger to its original position.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The second part of the project consists in develop a device driver in C
+ programming language that will be working on any Linux Operating System.
+ This device driver will take care of providing to the upper layers several
+ primitives that will allow the interaction with the physical device.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The third part of the project consists in create a library in any desired
+ language.
+ This library will allow the implementation of the functions provided by
+ the device driver, this means this library will be the one interacting
+ directly with the device driver specified in the above point.
+ It will be required to describe a common language that will let us describe
+ any of the instructions specified in section A .
+ This language will have to manage the following concepts:
+\end_layout
+
+\begin_layout Itemize
+Instruction type (touch, push, drag).
+\end_layout
+
+\begin_layout Itemize
+X,Y initial position.
+\end_layout
+
+\begin_layout Itemize
+X,Y final position.
+\end_layout
+
+\begin_layout Standard
+The fourth part of the project consists in develop a program that will implement
+ the small language just described and will make possible the configuration/setu
+p of the robotic finger.
+\end_layout
+
+\begin_layout Standard
+The fifth part of the project consists in develop a physical test program
+ to test the robotic finger functionality.
+ It will consists of a numerical keyboard (similar to the one used by the
+ BNCR in its Internet banking).
+ The software is going to generate a random PIN of 6 digits and the robotic
+ finger should type this PIN in order to pass the physical test.
+ The program is going to have several screen resolutions:
+\end_layout
+
+\begin_layout Itemize
+1x1: This is the minimal screen resolution.
+ It will divide the screen in 1cmx1cm matrices.
+ 
+\end_layout
+
+\begin_layout Itemize
+2x2: It will divide the screen in 2cmx2cm matrices.
+\end_layout
+
+\begin_layout Itemize
+4x4: It will divide the screen in 4cmx4cm matrices.
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Development environment
+\end_layout
+
+\begin_layout Itemize
+The program was developed using Ubuntu 15.04.
+ 
+\end_layout
+
+\begin_layout Itemize
+Sublime 3, this is a very popular code editor, besides give some tools that
+ makes the development of the code easier than other idles.
+ 
+\end_layout
+
+\begin_layout Itemize
+GCC was used to compile the programs using the 6.1 version.
+ 
+\end_layout
+
+\begin_layout Itemize
+Arduino Idle 1.6.7.
+\end_layout
+
+\begin_layout Itemize
+App Inventor 2.
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Continuous learning attribute analysis
+\end_layout
+
+\begin_layout Standard
+We divided the project on 3 parts:
+\end_layout
+
+\begin_layout Itemize
+Software: The software that handles the communication with the device, is
+ divided in three main blocks.
+ The interpreter, the device library and finally the device driver.
+ All together allow a communication with the hardware.
+ First the interpreter, this block is in charge of interpreting the instructions
+ written on the config file, this means that after reading the file , we
+ should know the board size and the differents moves to create complete
+ the pin on the phone.
+ The interpreter use the device library which is the other big block, this
+ one have the methods that process the board information and the diferentes
+ moves that it can make, like drag , push or touch, those both methods will
+ send the information to the arduino using the last block, the arduino driver.
+ The arduino driver make the communication with the physical device possible.
+ This block read and write in the device allowing the information of the
+ board to be received by the hardware.
+ .
+\end_layout
+
+\begin_layout Itemize
+Hardware: To design the finger robot we use an ATMEGA 328 microcontroller,
+ because it give us the necessary ports for the servo motors, allowing us
+ to control the servos.
+ To design the finger movement we base our design to work like a CNC or
+ a plotter.
+ The servo motor are attached to some roles which generates the movement.
+ For the X and Y axes move, the servo move a base in the corresponding direction.
+ So this means that the x servo moves his base and the Y axe base and the
+ Y servo moves only in his direction.
+ For the Z axe, we attached a servo as the X and Y cases, but in this case
+ is placed vertically.
+ So this means that the phone is moving with the base in the X and Y direction
+ and the finger in the Z direction.
+\end_layout
+
+\begin_layout Itemize
+Physical test software: we decide to make an Android application using the
+ App Inventor tool, because the functionality of the application is easy
+ and because App Inventor give us all the necessary widgets we need to develop
+ the application.
+ We decided to use Android because all of us have Android smartphones, so
+ we can make the tests with our phones.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Program design
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+USB driver code
+\end_layout
+
+\begin_layout Standard
+The development team have tried to use the best programming practices, in
+ this way the code reutilization was fundamental in this project building.
+ The project contains the following common files: USBDriver.c, ArduinoDriverLibra
+ry.h.
+ The description of this files is as follows:
+\end_layout
+
+\begin_layout Itemize
+USBDriver.c: this file contains all the structures, interfaces and functions
+ of the USB driver.
+ 
+\end_layout
+
+\begin_layout Itemize
+ArduinoDriverLibrary.h: this file contains all the functions that interacts
+ with the USB driver functions.
+ 
+\end_layout
+
+\begin_layout Standard
+USBDriver.c have the following methods:
+\end_layout
+
+\begin_layout Itemize
+static int usb_open(struct inode *inode, struct file *file): This method
+ is going to open the file corresponding with the Arduino.
+\end_layout
+
+\begin_layout Itemize
+static void usb_delete(struct kref *kref): This method is going to create
+ the structure that contains all of the data need it on one side of the
+ bride.
+\end_layout
+
+\begin_layout Itemize
+static ssize_t usb_read(struct file *file, char __user *buffer, size_t count,
+ loff_t *ppos): This function is use to read information send by the device.
+\end_layout
+
+\begin_layout Itemize
+static void usb_write_bulk_callback(struct urb *urb): After the urb is successfu
+lly transmitted to the USB device, this function is called by the USB core.
+\end_layout
+
+\begin_layout Itemize
+static ssize_t usb_write(struct file *file, const char __user *user_buffer,
+ size_t count, loff_t *ppos): This function is in charged of write data
+ to the device.
+\end_layout
+
+\begin_layout Itemize
+static int usb_probe(struct usb_interface *interface, const struct usb_device_id
+ *id): The probe function is called when a device is installed that the
+ USB core thinks this driver should handle; the probe function should perform
+ checks on the information passed to it about the device and decide whether
+ the driver is really appropriate for that device.
+\end_layout
+
+\begin_layout Itemize
+static void usb_disconnect(struct usb_interface *interface): The disconnect
+ function is called when the driver should no longer control the device
+ for some reason and can do clean-up.
+\end_layout
+
+\begin_layout Itemize
+static int __init usb_init(void): This functions is in charged of register
+ the USB driver.
+\end_layout
+
+\begin_layout Itemize
+static void __exit usb_exit(void): This function is in charged of unregister
+ the USB driver.
+\end_layout
+
+\begin_layout Standard
+ArduinoDriverLibrary.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+int send_message_to_arduino (char stringToSend[256]): This function is going
+ to send a message to the arduino file.
+\end_layout
+
+\begin_layout Itemize
+char* read_message_send_from_arduino(): This function is going to read a
+ message send from the arduino.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Android application
+\end_layout
+
+\begin_layout Standard
+For the physical test program, we develop an Android app with the following
+ functions:
+\end_layout
+
+\begin_layout Itemize
+checkPin: this method is in charge of check if the pin introduced by the
+ robotic finger is correct.
+\end_layout
+
+\begin_layout Itemize
+concatenatePin: this method is in charge of update the pin introduced by
+ the robotic finger.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Interpreter
+\end_layout
+
+\begin_layout Standard
+The interpreter was developed in C programing languaje.
+ The interpreter reads an file called config.txt, this file is the input
+ of the interpreter, in this file there are some instructions compatible
+ con the interpreter, the interpreter reads the instructions, for each instructi
+on it detects what kind is this and descompose it, finally the interpreter
+ generates his output, that is call the appropiate method of the device
+ library, that is going to handle the descompose instruction.
+\end_layout
+
+\begin_layout Standard
+There are two types of instruction, the board instruction and the move instructi
+on.
+\end_layout
+
+\begin_layout Itemize
+Board instruction: this type of instruction indicates the size of the board.
+\end_layout
+
+\begin_layout Itemize
+Move instruction: this type of instruction indicates the kind of movement
+ (push, drag, touch), the current position of the robotic finger and the
+ final position of the robotic finger (target position).
+\end_layout
+
+\begin_layout Standard
+The interpreter is composed by 4 methods, these methods are described below:
+\end_layout
+
+\begin_layout Itemize
+findSubstr: this method receibe a char array and a pattern, it return the
+ position where the pattern is find in the array.
+\end_layout
+
+\begin_layout Itemize
+str_split: this method receibe a char array, split the array in chars and
+ return a list of arrays.
+\end_layout
+
+\begin_layout Itemize
+processMove: this method gets the information of the movement and call the
+ device library.
+\end_layout
+
+\begin_layout Itemize
+processBoard: this method gets the information of the board and call the
+ device library.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Device Library
+\end_layout
+
+\begin_layout Standard
+The device library was developed in C programing language.
+ The device library has an input from the interpreter and comunicates with
+ the device driver like an output.
+ The device library is composed by 2 methods, these methods are described
+ below:
+\end_layout
+
+\begin_layout Itemize
+processMoveDevice: this method call the device driver, it sends nextMove:
+ 1 if the move is touch, 2 if the move is push, 3 if the move is drag, posFin
+ and posIni a number in the range 0-9.
+\end_layout
+
+\begin_layout Itemize
+processBoardDevice: this method call the device driver, it sends size board:
+ 1 if the board is 1x1, 2 if the board is 2x2, 3 if the board is 4x4.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Language
+\end_layout
+
+\begin_layout Standard
+The language designed to control the interpreter have the syntax 
+\begin_inset Quotes eld
+\end_inset
+
+type_instruction -parameters
+\begin_inset Quotes erd
+\end_inset
+
+, the specification is as follows:
+\end_layout
+
+\begin_layout Standard
+Setting the board:
+\end_layout
+
+\begin_layout Itemize
+board -b sizeBoard, where size board can be 1x1, 2x2 or 3x3
+\end_layout
+
+\begin_layout Standard
+Doing a movement:
+\end_layout
+
+\begin_layout Itemize
+move -t typeofmovement -i initialPosition -f finalPosition, where typeofmovement
+ can be touch, drag or push, initialPosition can be an integer in the range
+ of 0-9, finalPosition can be an integer in the range of 0-9.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Arduino code
+\end_layout
+
+\begin_layout Standard
+For the arduino code, we have this two methods that get how much they have
+ to move using the formula |posIni - posFin|*separation, so with this formula
+ the servo will know how much to move.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void moveX(int posIni, int posFin, int separation)
+\end_layout
+
+\begin_layout Plain Layout
+
+void moveY(int posIni, int posFin, int separation).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arduino use this method to create the Z movement, the dir parameter
+ means if is going up or down.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void moveZ(int dir).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arduino use the cast method to simplify the matrix, so it map the position
+ and return a generic position.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int castNumberY(int number) 
+\end_layout
+
+\begin_layout Plain Layout
+
+int castNumberX(int number)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arduino reads the information coming for the device library.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void serialEvent()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+\begin_inset Newpage pagebreak
+\end_inset
+
+UML Diagram
+\series default
+\size default
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/operativos.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 1.
+ UML Diagram 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+\begin_inset Newpage newpage
+\end_inset
+
+Diagrams of the physical simulation
+\series default
+\size default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To design the finger robot we use an ATMEGA 328 microcontroller, because
+ it give us the necessary ports for the servo motors, allowing us to control
+ the servos.
+ To design the finger movement we base our design to work like a CNC or
+ a plotter.
+ The servo motor are attached to some roles which generates the movement.
+ 
+\end_layout
+
+\begin_layout Standard
+For the X and Y axes move, the servo move a base in the corresponding direction.
+ So this means that the x servo moves his base and the Y axe base and the
+ Y servo moves only in his direction.
+ For the Z axe, we attached a servo as the X and Y cases, but in this case
+ is placed vertically.
+ So this means that the phone is moving with the base in the X and Y direction
+ and the finger in the Z direction.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/operativos_schem.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 2.
+ Schematic Diagram of the physical simulation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/operativos_bb.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 3.
+ Arduino diagram of the physical simulation
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Instructions of how to use the program
+\end_layout
+
+\begin_layout Enumerate
+Compile the project using the command make.
+ In the root folder.
+ This will create an executable called Interpreter.
+\end_layout
+
+\begin_layout Enumerate
+Run the script that configure the driver, place in the root folder and write
+ in terminal $sh mountDriver.sh
+\end_layout
+
+\begin_layout Enumerate
+To run the project use the follow line on the terminal.
+ $./Interpreter configFile, where configFile, represents the file that have
+ all the instructions to execute.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Student activity log
+\end_layout
+
+\begin_layout Standard
+Daniels Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interpreter Development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interpreter Development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Device Library Deveploment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Device Library Deveploment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Software
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Software
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Calibration
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Edwards Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Finger Physical Device Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Finger Physical Investigation and buying materials
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Using servo motors to move rols
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Creating the CNC model
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Using the Machine with the drivers
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Making the Z movement
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+49h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Felipes Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+05/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driver Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Driver Investigation and Implementation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+09/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Robotic Finger Design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+USB Driver and Arduino communication
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Robotic Finger communication and application design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Physical test software and Robotic Finger test
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15/11/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Documentation and testing
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Project final status
+\end_layout
+
+\begin_layout Standard
+The project is completed satisfactorily, the only issue is the board of
+ 4x4 have a size that exceed the phone screen size, for this reazon we can't
+ show the correct funtionability, but all the software and hardware support
+ this board.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Conclusions 
+\end_layout
+
+\begin_layout Itemize
+All the USB drivers needs a “char” or “block” interface to communicate with
+ the program in the user space.
+\end_layout
+
+\begin_layout Itemize
+The endpoints of a device determinate if the USB is an output or input,
+ and you cand send bulk or interrupt information to them.
+\end_layout
+
+\begin_layout Itemize
+Using a library abstract the programs how the hardware works and improve
+ the efficiency of using that hardware.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Recommendations
+\end_layout
+
+\begin_layout Itemize
+The generic CNC design allows an excellent 3 dimensional movement.
+ 
+\end_layout
+
+\begin_layout Itemize
+To avoid the friction created by the wood and steel pieces is recommended
+ to increase the roles in the axes, taking in mind that this will increase
+ the project price.
+\end_layout
+
+\begin_layout Itemize
+It's important to unmount the driver of the device, before mount your driver
+ for that same device.
+\end_layout
+
+\begin_layout Itemize
+Create a script that unmount and mount the drivers , this will make it easier
+ to use.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+References
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+[1] A.
+ Rubini and J.
+ Corbet, Linux device drivers, 1st ed.
+ Sebastopol: O'Reilly & Associates, 2001.
+\end_layout
+
+\end_body
+\end_document
