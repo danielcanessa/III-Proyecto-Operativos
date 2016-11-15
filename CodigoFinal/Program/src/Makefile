@@ -3,7 +3,7 @@ ouput = interpreter
 
 main:			
 		$(CC) -o deviceLibrary.o -c deviceLibrary.c 
-		$(CC) -std=gnu99 -o $(ouput) interpreter.c ArduinoDriver.c deviceLibrary.a -lm
+		$(CC) -std=gnu99 -o $(ouput) interpreter.c ArduinoDriver.c deviceLibrary.a 
 
 clean:
 		rm deviceLibrary.o

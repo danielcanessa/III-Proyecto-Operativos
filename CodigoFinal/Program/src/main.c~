@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include"yourlib.h"
+
+int main()
+{
+	float UserInput;
+
+	printf("Enter a temperature in celsius to convert to  fahrenheit:");
+	scanf("%f",&UserInput);
+	celconvert(UserInput);
+
+	return 0;
+}

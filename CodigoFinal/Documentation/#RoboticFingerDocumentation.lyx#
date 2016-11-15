@@ -1,0 +1,3153 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Costa Rica Institute of Technology
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Computer Engineering Academic Area
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Licentiate Degree Program in Computer Engineering
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Course: CE-4303 – Operating Systems Principles
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset Graphics
+	filename ../../../../../Proyecto2/Documentacion/Documentation/images/logo_tec.png
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Project #3: Robotic Finger
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Made by:
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size larger
+Daniel Gerardo Canessa Valverde, 201137483
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Felipe Alberto Mejías Loría, 201231682
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Edward Umaña Williams, 201128403
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Professor:
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\size larger
+\lang spanish
+Jennifer Vargas Gonzalez.
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+
+\lang spanish
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+ 
+\size larger
+Date: November 15th, 2016
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Introduction 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size large
+Device drivers
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+For the development of this project is important define some concepts, these
+ concepts are going to be used along of this document.
+ Some of the concepts are below:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Process management: defines the address space, text, resources, etc.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Memory management: defines a single sequential execution stream within a
+ process (PC, stack, registers).
+ The threads extract the thread of control information from the process,
+ also the threads are bound to a single process.[1]
+\end_layout
+
+\begin_layout Itemize
+Filesystems:
+\end_layout
+
+\begin_layout Itemize
+Device control:
+\end_layout
+
+\begin_layout Itemize
+N
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Some important features of a thread are: each process may have multiple
+ threads of control within it, the address space of a process is shared
+ among all its threads , no system calls are required to cooperate among
+ threads, simpler than message passing and shared-memory.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Operating Systems can support one or many address spaces, and one or many
+ threads per address space.
+ Therea are two kinds of threads implementation:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Kernel Threads: also known as a lightweight process, is a thread that the
+ operating system knows about.
+ Switching between kernel threads of the same process requires a small context
+ switch, the values of registers, program counter, and stack pointer must
+ be changed.
+ The memory management information does not need to be changed since the
+ threads share an address space.
+ As well the kernel must manage and schedule threads (as well as processes),
+ but it can use the same process scheduling algorithms.
+ It is important to note that switching between kernel threads is slightly
+ faster than switching between processes.
+ [1]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+User-Level Threads: a user-level thread is a thread that the OS does not
+ know about.
+ The OS only knows about the process containing the threads, also the OS
+ only schedules the process, not the threads within the process.
+ The programmer uses a thread library to manage threads (create and delete
+ them, synchronize them, and schedule them).
+ [1]
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Comparing the user-level threads with the kernel threads, we get some advantages
+ and disadvantages:
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Advantages User-Level Threads: [2]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+There is no context switch involved when switching threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+The user-level thread scheduling is more flexible.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+A user-level code can define a problem dependent thread scheduling policy.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Each process might use a different scheduling algorithm for its own threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+A thread can voluntarily give up the processor by telling the scheduler
+ it will yield to other threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+User-level threads do not require system calls to create them or context
+ switches to move between them thread management calls are library calls
+ and much faster than system calls made by kernel threads.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+User-level threads are typically much faster than kernel threads
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Disadvantages User-Level Threads: [2]
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Since the OS does not know about the existence of the user-level threads,
+ it may make poor scheduling decisions:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+\align block
+It might run a process that only has idle threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+If a user-level thread is waiting for I/O, the entire process will wait.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Solving this problem requires communication between the kernel and the user-leve
+l thread manager.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\noindent
+\align block
+Since the OS just knows about the process, it schedules the process the
+ same way as other processes, regardless of the number of user threads.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+For kernel threads, the more threads a process creates, the more time slices
+ the OS will dedicate to it.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Scheduling is the method by which work specified by some means is assigned
+ to resources that complete the work.
+ The work may be virtual computation elements such as threads, processes
+ or data flows, which are in turn scheduled onto hardware resources such
+ as processors.
+ A scheduler is what carries out the scheduling activity.
+ Schedulers are often implemented so they keep all computer resources busy
+ (as in load balancing), allow multiple users to share system resources
+ effectively, or to achieve a target quality of service.
+ Scheduling is fundamental to computation itself, and an intrinsic part
+ of the execution model of a computer system; the concept of scheduling
+ makes it possible to have computer multitasking with a single central processin
+g unit (CPU).
+ A scheduler may aim at one of many goals, for example, maximizing throughput,
+ minimizing response time, or minimizing latency, maximizing fairness.
+ In practice, these goals often conflict, thus a scheduler will implement
+ a suitable compromise.
+ The scheduler is selected, depending upon the user's needs and objectives.
+ [3]
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size large
+Project specification
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The first part of the project is reimplemented the pthreads library except
+ that the new library is going to be user-level threads.
+ The methods that the new library (mypthreads) must have are: mythread_create,
+ mythread_end, mythread_yield, mythread_join, mythread_detach, mymutex_init,
+ mymutex_destroy, mymutex_lock, mymutex_unlock, mythread_setsched and mymutex_tr
+ylock.
+ The schedulers that are going to manage mypthreads are:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Round Robin Scheduler: this scheduler follows the Round Robin algorithm.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Lottery Scheduler: this scheduler follows the lottery scheduling algorithm.
+ The threads created using this scheduler may need extra parameters, for
+ example: the amount of initial tickets.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Real time scheduler: this scheduler follows a Real Time algorithm.
+ The threads created using this scheduler may need extra parameters, like
+ for example: time limit.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The second part of the project consists in develop a bridge simulation using
+ the threads and the schedulers implemented in the first part, the explanation
+ of the second part is as follows.
+ There are three different bridges located in one of the cities.
+ These bridges are one way bridges, which means the cars can transit over
+ any of these bridges one way at a time.
+ Each of those bridges can work with any of the following three methods
+ to control the traffic:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Transit officer: this is going to determine when a car from any of the sides
+ of the bridge can access the bridge allowing K cars from one side of the
+ bridge and then K cars from the other side of the bridge (repeating this
+ behavior).
+ If at some moment the queue of cars in one of the sides of a bridge is
+ empty but the other one has cars waiting to access the bridge, then the
+ access to the side of the bridge with queued cars will be granted even
+ when the amount of K cars has not been reached.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Access to the bridge is controlled by a semaphore (red and green lights).
+ We will have a semaphore in each side of the bridge, when it's green in
+ one side, it will be red in the other one.
+ The semaphore will be green during a certain amount of time in seconds
+ which will be customized by the user at the beginning of the program execution.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Access to the bridge is not controlled at all (jungle law).
+ The drivers (well educated and respectful of the law) can decide when to
+ access the bridge following these conditions: 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\noindent
+\align block
+A car can only access the bridge if the bridge it's empty or if there are
+ no cars circulating in the opposite way (to avoid collisions).
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+A car can only access the bridge if the amount of cars allowed to circulate
+ over the bridge is not exceeded (according to the bridge length).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\noindent
+\align block
+There are 3 diferent kinds of cars, the description of the cars are below:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Normal cars: this type of cars will not have any special treatment to get
+ its access to the bridge.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Ambulances: this type of cars will use a real time algorithm (soft) to schedule
+ its access to the bridge with some kind of priority.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Radioactive cars: this type of cars will use a real time algorithm(hard)
+ to schedule its access to the bridge.
+ If this type of cars don't arrive to their destination quick, it will be
+ a catastrophic.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+Also a simulation of the described problem should be implemented.
+ Each entity (cars, semaphores, ambulances, transit officers, etc) will
+ be represented by a thread that will be taking care of updating the correspondi
+ng data structures used in the solution of this project.
+ The user should be able to easily customize which traffic control method
+ will be used to manage each of the bridges.
+ Messages should be displayed at console level reporting each of the events
+ that are happening in each of the 3 bridges.
+ These messages should be very detailed in order to understand what's exactly
+ happening in each of the bridges.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+The third part of the project consists in the creation of a circuit, using
+ any desired embedded device, that is going to interact with the threadbridge
+ program to produce a physical simulation of the different bridges.
+ The simulation should include the following:
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+The physical representation of the bridges.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+When a car is passing through a bridge, the representation that reflects
+ the car is passing.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+Differentiate normal cars , from ambulances and from radioactive cars.
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Development environment
+\end_layout
+
+\begin_layout Itemize
+\noindent
+The program was developed using Ubuntu 15.04.
+ 
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Sublime 3, this is a very popular code editor, besides give some tools that
+ makes the development of the code easier than other idles.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+GCC was used to compile the programs using the 6.1 version.
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size larger
+Continuous learning attribute analysis
+\end_layout
+
+\begin_layout Standard
+We divided the project on 3 parts:
+\end_layout
+
+\begin_layout Itemize
+Threads and scheduler: reseraching on internet and with the class material
+ we develop the threads and the schedulers.
+ The first approach was develop two kinds of schedulers, the lottery and
+ the round robin both real time, althought we find several problems doing
+ the join of the threads with the bridges.
+ To solve this problem we divide the scheduler on three types: round robin,
+ lottery and real time, we decided that if exist one real time thread all
+ the other threads will be ignored, and only the real time thread will be
+ schedule.
+ That solution comes with another problem, if we stop the threads when a
+ real time thread was created, can be posible get a dead lock.
+ We implement a counter, if this counter is reached by a continius real
+ time thread, we schedule sound robin and lottery too, even if a real time
+ thread still alive.
+\end_layout
+
+\begin_layout Itemize
+Bridges and cars: when we finish the threads and schedulers development,
+ we start the implementation of this part.
+ There are three bridges, every one have one left queue and one right queue,
+ each queue have cars.
+ Each bridge is a thread on the officer method and the semaphore method,
+ but in the jungle law method the bridge is only a struct.
+ All the cars are threads, if the car is normal the scheduler is round robin,
+ if the car is ambulance the scheduler is lottery and if the car is radioactive
+ the scheduler is real time.
+ In the jungle bridges, we show the real behavior of the schedulers, in
+ the semaphore and the officer there is a controller thread that controls
+ the dinamic of the bridge.
+ Each car manage their own movement.
+\end_layout
+
+\begin_layout Itemize
+Hardware: we decided use an ATMEGA 328 microcontroler, because it give us
+ the necesary ports, the power consuption is reduce and there are several
+ examples of how connect the arduino uno with C.
+ Also we use neo pixels instead of normals leds, neopixel give us a lot
+ of advantages than simple leds, and the most important, the economic part
+ of the project was similar if we bought leds or if we bought neopixels.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Program design
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+Description of the code
+\end_layout
+
+\begin_layout Standard
+The development team have tried to use the best programming practices, in
+ this way the code reutilization was fundamental in this project building.
+ The project contains the following common files: Bridge.h, BridgeController.h,
+ Car.h, Car_List.h, Car_Queue.h, ContextManage.h, Dispatcher.h, Interfaz.h, Mutex.h,
+ readFile.h, Scheduler.h, TCB.h, Thread.h.
+ The description of this files is as follows:
+\end_layout
+
+\begin_layout Itemize
+Bridge.h: this file contains all the structures that a bridge needs.
+ 
+\end_layout
+
+\begin_layout Itemize
+BridgeController.h: this file contains all the necessary methods to control
+ all of the bridges.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car.h: this file contains all the structures that a car needs.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car_List.h: this file contains all the methods to manipulate a list of cars.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car_Queue.h: this file contains all the methods to manipulate a queue of
+ cars.
+ 
+\end_layout
+
+\begin_layout Itemize
+ContextManage.h: this file contains the function is needed to make a change
+ of context.
+ 
+\end_layout
+
+\begin_layout Itemize
+Dispatcher.h: this file contains the methods that is needed to save the actual
+ context of a thread and call the function that makes the change of context.
+ 
+\end_layout
+
+\begin_layout Itemize
+Interfaz.h: this file contains the function that is needed to create the
+ animation of the cars and the bridges.
+ 
+\end_layout
+
+\begin_layout Itemize
+Mutex.h: this file contains the structure that forms a mutex.
+ 
+\end_layout
+
+\begin_layout Itemize
+readFile.h: this file contains all the structures needed to load all of the
+ parameters of the configuration file.
+ 
+\end_layout
+
+\begin_layout Itemize
+Scheduler.h: this file contains all the structures and functions needed to
+ execute the Round Robin scheduler, the Lottery scheduler and the Real Time
+ scheduler.
+ 
+\end_layout
+
+\begin_layout Itemize
+TCB.h: this file contains all the structures that a thread needs.
+ 
+\end_layout
+
+\begin_layout Itemize
+Thread.h: this file contains all the functions that my_threads library have.
+ 
+\end_layout
+
+\begin_layout Standard
+Bridge.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+Bridge* createBridge( BridgeSide* brigdeLeftSide, BridgeSide* brigdeRightSide,Br
+igdeController brigdeController): This method is going to create the bridge
+ with all the parameters especified by the user.
+\end_layout
+
+\begin_layout Itemize
+BridgeSide* createBridgeSide(int length, int carSpeed, int semaphoreTime,
+ int KCars,int ambulancePercentage, int radioactivePercentage,Car_Queue*
+ queue): This method is going to create the structure that contains all
+ of the data need it on one side of the bride.
+\end_layout
+
+\begin_layout Standard
+BridgeController.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+void initBridgeController(): Initialize all the queues.
+\end_layout
+
+\begin_layout Itemize
+Direction traficOfficerController(Bridge* bridge): This method is only called
+ when a change of direction is necessary.
+\end_layout
+
+\begin_layout Itemize
+void *traficOfficerThread(void *bridgeId): This method is responsible for
+ executing the method of transit officer.
+\end_layout
+
+\begin_layout Itemize
+void addCarsToBridge(Bridge* mBridge, Direction direction): This method
+ takes care of adding cars to the list of cars that are crossing the bridge
+ at that time.
+\end_layout
+
+\begin_layout Itemize
+void *jungleLaw(void *mCar): This method is going to implement the jungle
+ law mechanism.
+\end_layout
+
+\begin_layout Itemize
+void *fillCarsJungle(void *arg): Fills the queue of the bridges.
+\end_layout
+
+\begin_layout Itemize
+void addCarsToBridgeJungle(Bridge* bridge, Direction direction, Car * actualCar
+ ): This method add cars to the bridge when the bridge execute the jungle
+ law.
+\end_layout
+
+\begin_layout Itemize
+void *semaphoreThread(void *bridgeId): This method implements the semaphore
+ control.
+\end_layout
+
+\begin_layout Standard
+Car.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+Car* createCar(CarType carType, int carSpeed, int idBridge, QueueSide queueSide,
+ int bridgePos): This method is going to create the car with all the parameters
+ especified by the user.
+\end_layout
+
+\begin_layout Itemize
+void* moveCarThread(void *mCar): This method is going to move the car when
+ the car is moving across the bridge.
+\end_layout
+
+\begin_layout Standard
+Car_List.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+Car_list* Car_list_create(): This method is going to create and initialize
+ the list of cars.
+ 
+\end_layout
+
+\begin_layout Itemize
+int Car_list_is_empty(Car_list* Car_list): This method is going to check
+ if the list of cars is empty.
+\end_layout
+
+\begin_layout Itemize
+int Car_list_add(Car_list* Car_list, Car* Car): This method is going to
+ add cars on the list.
+\end_layout
+
+\begin_layout Itemize
+Car* Car_list_remove(Car_list* Car_list, int bridgePos): This method is
+ going to remove a car from the list.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car* Car_list_get(Car_list* Car_list, int pos): This method is going to
+ get a car from the list.
+ 
+\end_layout
+
+\begin_layout Itemize
+void printList(Car_list* carList): This method is goint to print the list
+ of cars.
+ 
+\end_layout
+
+\begin_layout Itemize
+int verifyRadioActiveonList(Car_list* Car_list,QueueSide queueSide): This
+ method is going verify if there is a radioactive car on the list .
+\end_layout
+
+\begin_layout Itemize
+void moveCarsOnBridge(Car_list* carList): This method is going to move the
+ cars across the bridge.
+\end_layout
+
+\begin_layout Standard
+Car_Queue.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+Car_Queue* Car_Queue_create(): This method is going to create and initialize
+ the queue.
+ 
+\end_layout
+
+\begin_layout Itemize
+int Car_Queue_is_empty(Car_Queue* car_list): This method is going to check
+ if the queue is empty.
+ 
+\end_layout
+
+\begin_layout Itemize
+int EnqueueCar(Car_Queue* Car_Queue, Car* car): This method is going to
+ add a car to the queue.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car* DequeueCar(Car_Queue* Car_Queue): This method is going to extract a
+ car from the queue.
+ 
+\end_layout
+
+\begin_layout Itemize
+int Car_Queue_contains(Car_Queue* Car_Queue, Car* car): This method is going
+ to check if the queue have an specific car.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car* Car_Queue_get(Car_Queue* Car_Queue, int idCar): This method is going
+ to get a car from the queue.
+ 
+\end_layout
+
+\begin_layout Itemize
+void printQueue(Car_Queue* Car_Queue): This method is going to print the
+ queue.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car_Queue* fillQueueJungle(Car_Queue* Queue,float ambulancePercentage, float
+ radioactivePercentage, int averageSpeedCar, int averageSpeedAmbulance,
+ int averageSpeedRadioactiveCar,int carAmount, int idBridge, QueueSide queueSide
+, int bridgePos): This method is going to fill the queue of the jungle law.
+ 
+\end_layout
+
+\begin_layout Itemize
+Car* carJungleRemove(Car_Queue* car_Queue, int idCar): This method is going
+ to remove the cars of the queue of the jungle law.
+ 
+\end_layout
+
+\begin_layout Standard
+ContextManage.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+ucontext_t* make_context(void *(*function)(void *), void* arg, ucontext_t*
+ link): This method is going to create a new context each time a thread
+ is created a new context is created.
+\end_layout
+
+\begin_layout Standard
+Dispatcher.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+void Dispatch(TCB* thread): This method is going to make a change of context.
+\end_layout
+
+\begin_layout Itemize
+int Save(TCB* thread): This method is going to save the thread context of
+ the thread that receives as a parameter.
+\end_layout
+
+\begin_layout Standard
+Interfaz.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+void* animatedThreadBridge(void * x_void_ptr): It is responsible for conducting
+ the animation 
+\end_layout
+
+\begin_layout Itemize
+void initCarsOnBridge(): Initialize all the structs.
+\end_layout
+
+\begin_layout Standard
+Mutex.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+mutext* mutext_create(): This method is going to initialize the mutext.
+\end_layout
+
+\begin_layout Standard
+readFile.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+void initConfigFile(): This method read all the parameters of the configuration
+ file.
+\end_layout
+
+\begin_layout Standard
+Scheduler.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+int initScheduler(): This method is going to initialize all of the structs
+ need it for the scheduler 
+\end_layout
+
+\begin_layout Itemize
+int create(ucontext_t* newcontext, Scheduler scht, int,int): this method
+ is going to create the thread 
+\end_layout
+
+\begin_layout Itemize
+int ready(TCB* thread): this method returns the id of the thread 
+\end_layout
+
+\begin_layout Itemize
+int startQuantum(int ms): this method initialize the quantum 
+\end_layout
+
+\begin_layout Itemize
+void stopQuantum(): this method is going to stop the quantum 
+\end_layout
+
+\begin_layout Itemize
+void pause_timer(): this method is going to pause the timer 
+\end_layout
+
+\begin_layout Itemize
+void threadKill(TCB* thread): this method kill threads 
+\end_layout
+
+\begin_layout Itemize
+TCB* running(): indicates which thread is running
+\end_layout
+
+\begin_layout Itemize
+TCB* getNextRoundRobin(): get the next thread of the round robin queue 
+\end_layout
+
+\begin_layout Itemize
+TCB* getNextRaffle(): get the thread that wins the lottery
+\end_layout
+
+\begin_layout Itemize
+int sleepThread(TCB*, int): this method sleep the thread 
+\end_layout
+
+\begin_layout Itemize
+TCB* findTCB(int tid): find a thread by the TID 
+\end_layout
+
+\begin_layout Itemize
+int joinThreadtoThread(TCB* thread, TCB* waited_for): this method calls
+ TCB_BLOCK 
+\end_layout
+
+\begin_layout Itemize
+void unblock_waiting_for_me(TCB* thread): calls the unblock function 
+\end_layout
+
+\begin_layout Itemize
+void unblock(TCB* thread, TCB* waited_for): unblock the thread specified
+ by TID 
+\end_layout
+
+\begin_layout Itemize
+int joinThread(TCB* thread, int waitID): calls TCB_BLOCK 
+\end_layout
+
+\begin_layout Itemize
+int ditachThread(int): calls the function unblock_waiting_for_me
+\end_layout
+
+\begin_layout Itemize
+int getMaxTickets(): get the amount of tickets 
+\end_layout
+
+\begin_layout Itemize
+TCB* getWinner(int ticket): received the winner ticket and find who win
+ the lottery
+\end_layout
+
+\begin_layout Standard
+TCB.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+TCB* TCB_create(int thread_id, ucontext_t* context, Scheduler scht, State
+ state, int,int): This method creates the thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+int TCB_equals(TCB* t1, TCB* t2): This method check if two threads are equal.
+\end_layout
+
+\begin_layout Itemize
+int TCB_block(TCB* waiting_thread, TCB* blocking_thread): This method blocks
+ a thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+int TCB_unblock(TCB* waiting_thread, TCB* blocking_thread): This method
+ removes a thread from the join queue of threads.
+ 
+\end_layout
+
+\begin_layout Itemize
+int TCB_is_blocked(TCB* thread): This method check if a thread is blocked.
+ 
+\end_layout
+
+\begin_layout Standard
+Thread.h have the following methods:
+\end_layout
+
+\begin_layout Itemize
+int mythread_create(void *(*function)(void *), Scheduler scht, int tickets,
+ void *arg,int): This method creates a new thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mythread_init(): This method initializes all the structs at the beginning.
+ 
+\end_layout
+
+\begin_layout Itemize
+void mythread_join(int waitTID): This method suspends execution of the calling
+ thread until the target thread terminates, unless the target thread has
+ already terminated.
+\end_layout
+
+\begin_layout Itemize
+int mythread_end(): This method kills the thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+void mythread_sleep(int): This method is sleep the thread for an amount
+ of time.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mythread_detach(int tid): This method detach a thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mythread_id(): This method gets the thread TID.
+ 
+\end_layout
+
+\begin_layout Itemize
+void mythread_setsched(): This method set the scheduler to the thread.
+ 
+\end_layout
+
+\begin_layout Itemize
+void mythread_yield(): This method yield the processor.
+ 
+\end_layout
+
+\begin_layout Itemize
+mutext* mymutex_init(): Initialize the mutext.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mymutex_lock(mutext* mt): This method get the lock.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mymutex_unlock(mutext* mt): This method release the lock.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mymutex_trylock(mutext* mt): This method checks if there is a lock.
+ 
+\end_layout
+
+\begin_layout Itemize
+int mymutex_destroy(mutext* mt): This method destroy the mutex.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+\begin_inset Newpage pagebreak
+\end_inset
+
+UML Diagram
+\series default
+\size default
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../../../../../Proyecto2/Documentacion/Documentation/images/proyecto2.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 1.
+ UML Diagram 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\size large
+\begin_inset Newpage newpage
+\end_inset
+
+Diagrams of the physical simulation
+\series default
+\size default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the physical circuit we use an Arduino Uno as the microprocessor which
+ controls the leds and also is in charge of the communication with the C
+ code.
+ For the leds we use and NeoPixel with an array of 8 leds, because we can
+ control all the leds with just one digital output signal.
+ Those leds are RGB so we also can control the color of all of them.
+ 
+\end_layout
+
+\begin_layout Standard
+The microcontroller contain a list for all the bridges, which is being full
+ by the C Code through the serial port.
+ These communication is slow, so we can only update the leds every two seconds.
+ 
+\end_layout
+
+\begin_layout Standard
+As an improve of the code, we used to send a message for all the leds making
+ the cars move very slow.
+ After we only send one message per bridge improving the performance of
+ the circuit.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../../../../../Proyecto2/Documentacion/Documentation/images/Schematic.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 2.
+ Schematic Diagram of the physical simulation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ../../../../../Proyecto2/Documentacion/Documentation/images/arduino.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 3.
+ Arduino diagram of the physical simulation
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Instructions of how to use the program
+\end_layout
+
+\begin_layout Enumerate
+Compile the project using the command make.
+ In the root folder.
+ This will create an execuatable called ThreadBridge.
+\end_layout
+
+\begin_layout Enumerate
+To run the project only with terminal use the follow line on the terminal.
+ $./ThreadBridge n
+\end_layout
+
+\begin_layout Enumerate
+To run the project with GUI use the follow line on the terminal.
+ $./ThreadBridge n graphicmode 
+\end_layout
+
+\begin_layout Enumerate
+To run the project with physic simulation use the follow line on the terminal.
+ $./ThreadBridge n realmode
+\end_layout
+
+\begin_layout Standard
+Where n, represents the car amount that will be created each exponential
+ time, if n is no give it, n will be setted to 10.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Student activity log
+\end_layout
+
+\begin_layout Standard
+Daniels Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30/09/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+03/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+04/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Schedulers development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+05/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Schedulers development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Car queue development
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+07/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Semaphore, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+08/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Semaphore, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+09/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Report on terminal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Report on terminal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Physical representation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+94h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Edwards Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30/09/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+03/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Start the logic of threads
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+04/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Trafic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+05/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Trafic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Insert Cars to Queues
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+07/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic,Trafic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+08/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Semaphore, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+09/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Buying Hardware Components and testing 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Comunication
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Comunication and testing with hardware
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Comunication and documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Documentation and Testing
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+91h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Felipes Activity Log
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hours
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Activity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30/09/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+01/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+03/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Threads Investigation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+04/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Trafic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+05/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Trafic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Graphical design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+07/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Graphical design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+08/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Semaphore, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+09/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bridge Controller Logic, Jungle
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Buying Hardware Components and testing 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Graphical design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Graphical design
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arduino Comunication and documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14/10/2016
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+99h
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Project final status
+\end_layout
+
+\begin_layout Standard
+The project is completed satisfactorily, there are only two issues that
+ can be perform in the future:
+\end_layout
+
+\begin_layout Itemize
+Slow communication between C and the ATMEGA 328, takes 2 seconds between
+ each data to be sended.
+ This is a hardware limitation, with a more powerfull hardware this can
+ be solved.
+\end_layout
+
+\begin_layout Itemize
+The car speed is the same for all the cars, limitations on the graphical
+ mode, made that we set the same speed for all the cars.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Conclusions 
+\end_layout
+
+\begin_layout Itemize
+The threads allow implementing multiprogramming, where in a given time interval
+ it can run different programs parts.
+\end_layout
+
+\begin_layout Itemize
+The mutext allows only a shared resource can be accessed by different threads
+ one at a time.
+\end_layout
+
+\begin_layout Itemize
+The threads in user space are implemented by dividing the thread given by
+ the operating system in different contexts running and exchanged periodically.
+\end_layout
+
+\begin_layout Itemize
+Scheduling algorithms allow the implementation of different ways of choosing
+ the next thread to run in a multithreaded execution.
+\end_layout
+
+\begin_layout Itemize
+The soft real-time schedulers seek the full implementation of a thread does
+ not exceed its deadline, to prioritize the order of execution threads that
+ are soon to reach their deadline.
+\end_layout
+
+\begin_layout Itemize
+The use of the yield method for handling wire enables easy implementation
+ of semaphores in animations.
+\end_layout
+
+\begin_layout Itemize
+Depending of the method of serial comunication it can takes long time.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+Recommendations
+\end_layout
+
+\begin_layout Itemize
+It is recommended to implement a function of sleep when a thread library
+ in user space is created, because if the sleep function C is used all the
+ threads and not just the thread that called the function stop.
+\end_layout
+
+\begin_layout Itemize
+It is recommended to use u_context_t class in C to implement a library of
+ threads, this help with the context switching.
+\end_layout
+
+\begin_layout Itemize
+It is recommended to look how much it is needed the speed of the serial
+ communication, if this is a requeriment look for another mechanism of communica
+tion.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\lang spanish
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\series bold
+\size larger
+References
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+[1]P.
+ Shenoy, "CMPSCI 377: Operating Systems (Fall 2016)", University of MassachuseIs
+, 2016.
+ [Online].
+ Available: http://lass.cs.umass.edu/~shenoy/courses/fall16/lectures/Lec06.pdf.
+ [Accessed: 14- Oct- 2016].
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+[2]C.
+ Baue, "User and Kernel Level Threads", Cs.iit.edu, 2016.
+ [Online].
+ Available: http://www.cs.iit.edu/~cs561/cs450/ChilkuriDineshThreads/dinesh's%20fil
+es/User%20and%20Kernel%20Level%20Threads.html.
+ [Accessed: 14- Oct- 2016].
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+[3]S.
+ Keshav, "Scheduling", Cornell University, 2014.
+ [Online].
+ Available: http://www.cs.cornell.edu/skeshav/book/slides/scheduling/scheduling.pdf.
+ [Accessed: 14- Oct- 2016].University
+\end_layout
+
+\end_body
+\end_document
