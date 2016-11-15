@@ -1,4 +1,3 @@
-
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/init.h>
@@ -9,16 +8,18 @@
 #include <asm/uaccess.h>
 
 
-/* Define these values to match your devices */
-#define USB_SKEL_VENDOR_ID	0x2341
-#define USB_SKEL_PRODUCT_ID	0x0001
+/* Arduino USB Vendor ID and Product ID */
+#define ARDUINO_VENDOR_ID	0x2341
+#define ARDUINO_PRODUCT_ID	0x0001
 
 /* table of devices that work with this driver */
-static struct usb_device_id skel_table [] = {
-	{ USB_DEVICE(USB_SKEL_VENDOR_ID, USB_SKEL_PRODUCT_ID) },
-	{ }					/* Terminating entry */
+static struct usb_device_id tableOfDevices [] = {
+	{USB_DEVICE(ARDUINO_VENDOR_ID, ARDUINO_PRODUCT_ID) },
+	{ }	
 };
-MODULE_DEVICE_TABLE (usb, skel_table);
+
+/*necessary to allow user-space tools to figure out what devices this driver can control*/
+MODULE_DEVICE_TABLE (usb, tableOfDevices);
 
 
 /* Get a minor range for your devices from the usb maintainer */
@@ -34,11 +35,12 @@ struct usb_skel {
 	__u8			bulk_out_endpointAddr;	/* the address of the bulk out endpoint */
 	struct kref		kref;
 };
+
 #define to_skel_dev(d) container_of(d, struct usb_skel, kref)
 
-static struct usb_driver skel_driver;
+static struct usb_driver driver;
 
-static void skel_delete(struct kref *kref)
+static void usb_delete(struct kref *kref)
 {	
 	struct usb_skel *dev = to_skel_dev(kref);
 
@@ -47,7 +49,8 @@ static void skel_delete(struct kref *kref)
 	kfree (dev);
 }
 
-static int skel_open(struct inode *inode, struct file *file)
+/*This function open the device */
+static int usb_open(struct inode *inode, struct file *file)
 {
 	struct usb_skel *dev;
 	struct usb_interface *interface;
@@ -56,7 +59,7 @@ static int skel_open(struct inode *inode, struct file *file)
 
 	subminor = iminor(inode);
 
-	interface = usb_find_interface(&skel_driver, subminor);
+	interface = usb_find_interface(&driver, subminor);
 	if (!interface) {
 		pr_err("%s - error, can't find device for minor %d",
 		     __FUNCTION__, subminor);
@@ -80,20 +83,8 @@ exit:
 	return retval;
 }
 
-static int skel_release(struct inode *inode, struct file *file)
-{
-	struct usb_skel *dev;
-
-	dev = (struct usb_skel *)file->private_data;
-	if (dev == NULL)
-		return -ENODEV;
-
-	/* decrement the count on our device */
-	kref_put(&dev->kref, skel_delete);
-	return 0;
-}
-
-static ssize_t skel_read(struct file *file, char __user *buffer, size_t count, loff_t *ppos)
+/*This function is use to read information send by the device */
+static ssize_t usb_read(struct file *file, char __user *buffer, size_t count, loff_t *ppos)
 {
 	struct usb_skel *dev;
 	int retval = 0;
@@ -118,7 +109,8 @@ static ssize_t skel_read(struct file *file, char __user *buffer, size_t count, l
 	return retval;
 }
 
-static void skel_write_bulk_callback(struct urb *urb)
+/*This function is use with the write usb function */
+static void usb_write_bulk_callback(struct urb *urb)
 {
 	struct usb_skel *dev = urb->context;
 
@@ -137,7 +129,8 @@ static void skel_write_bulk_callback(struct urb *urb)
 			urb->transfer_buffer, urb->transfer_dma);
 }
 
-static ssize_t skel_write(struct file *file, const char __user *user_buffer, size_t count, loff_t *ppos)
+/*This function is in charged of write data to the device */
+static ssize_t usb_write(struct file *file, const char __user *user_buffer, size_t count, loff_t *ppos)
 {
 	struct usb_skel *dev;
 	int retval = 0;
@@ -150,6 +143,7 @@ static ssize_t skel_write(struct file *file, const char __user *user_buffer, siz
 	if (count == 0)
 		goto exit;
 
+	/*  The urb must be allocated for transmitting the data to the device */
 	/* create a urb, and a buffer for it, and copy the data to the urb */
 	urb = usb_alloc_urb(0, GFP_KERNEL);
 	if (!urb) {
@@ -157,23 +151,28 @@ static ssize_t skel_write(struct file *file, const char __user *user_buffer, siz
 		goto error;
 	}
 
+	/*This instruction creates a buffer for the data */
 	buf = usb_alloc_coherent(dev->udev, count, GFP_KERNEL, &urb->transfer_dma);
 	if (!buf) {
 		retval = -ENOMEM;
 		goto error;
 	}
+	/*The data is copy from the user space to the local buffer*/
 	if (copy_from_user(buf, user_buffer, count)) {
 		retval = -EFAULT;
 		goto error;
 	}
 
-	/* initialize the urb properly */
+	/* 
+		Once the data is properly copied from the user space into the local buffer, the urb 
+		must be initialized correctly before it can be submitted to the USB core
+	*/
 	usb_fill_bulk_urb(urb, dev->udev,
 			  usb_sndbulkpipe(dev->udev, dev->bulk_out_endpointAddr),
-			  buf, count, skel_write_bulk_callback, dev);
+			  buf, count, usb_write_bulk_callback, dev);
 	urb->transfer_flags |= URB_NO_TRANSFER_DMA_MAP;
 
-	/* send the data out the bulk port */
+	/* The data can be submitted to the USB core to be transmitted to the device */
 	retval = usb_submit_urb(urb, GFP_KERNEL);
 	if (retval) {
 		pr_err("%s - failed submitting write urb, error %d", __FUNCTION__, retval);
@@ -193,12 +192,14 @@ error:
 	return retval;
 }
 
-static struct file_operations skel_fops = {
+/*
+This part defines the RoboticFingerUSBDriver operations
+*/
+static struct file_operations fops = {
 	.owner =	THIS_MODULE,
-	.read =		skel_read,
-	.write =	skel_write,
-	.open =		skel_open,
-	.release =	skel_release,
+	.read =		usb_read,
+	.write =	usb_write,
+	.open =		usb_open
 };
 
 /* 
@@ -206,12 +207,15 @@ static struct file_operations skel_fops = {
  * and to have the device registered with devfs and the driver core
  */
 static struct usb_class_driver skel_class = {
-	.name = "usb/pen%d",
-	.fops = &skel_fops,
+	.name = "usb/RoboticFinger%d",
+	.fops = &fops,
 	.minor_base = USB_SKEL_MINOR_BASE,
 };
 
-static int skel_probe(struct usb_interface *interface, const struct usb_device_id *id)
+/*
+*The probe function is called when a device is installed that the USB core thinks this driver should handle;
+*/
+static int usb_probe(struct usb_interface *interface, const struct usb_device_id *id)
 {
 	struct usb_skel *dev = NULL;
 	struct usb_host_interface *iface_desc;
@@ -283,11 +287,13 @@ static int skel_probe(struct usb_interface *interface, const struct usb_device_i
 
 error:
 	if (dev)
-		kref_put(&dev->kref, skel_delete);
+		kref_put(&dev->kref, usb_delete);
 	return retval;
 }
 
-static void skel_disconnect(struct usb_interface *interface)
+/*The disconnect function is called when the driver should no longer control the device for some
+reason and can do clean-up */
+static void usb_disconnect(struct usb_interface *interface)
 {
 	struct usb_skel *dev;
 	int minor = interface->minor;
@@ -299,37 +305,41 @@ static void skel_disconnect(struct usb_interface *interface)
 	usb_deregister_dev(interface, &skel_class);
 
 	/* decrement our usage count */
-	kref_put(&dev->kref, skel_delete);
+	kref_put(&dev->kref, usb_delete);
 
 	dev_info(&interface->dev, "USB Skeleton #%d now disconnected", minor);
 }
 
-static struct usb_driver skel_driver = {
-	.name = "skeleton",
-	.id_table = skel_table,
-	.probe = skel_probe,
-	.disconnect = skel_disconnect,
+/*This structure must be filled out by the USB driver and consists of a number of function
+callbacks and variables that describe the USB driver to the USB core code  */
+static struct usb_driver driver = {
+	.name = "RoboticFingerUSBDriver", //Name of the driver
+	.id_table = tableOfDevices, //list of all of the different kinds of USB devices this driver can accept
+	.probe = usb_probe,
+	.disconnect = usb_disconnect, //This function is called by the USB core when the driver is being unloaded from the USB core.
 };
 
-static int __init usb_skel_init(void)
+//This functions is in charged of register the usb_driver
+static int __init usb_init(void)
 {
 	int result;
 
 	/* register this driver with the USB subsystem */
-	result = usb_register(&skel_driver);
+	result = usb_register(&driver);
 	if (result)
 		pr_err("usb_register failed. Error number %d", result);
 
 	return result;
 }
 
-static void __exit usb_skel_exit(void)
+//This functions is in charged of unregister the usb_driver
+static void __exit usb_exit(void)
 {
-	/* deregister this driver with the USB subsystem */
-	usb_deregister(&skel_driver);
+	/* unregister this driver with the USB subsystem */
+	usb_deregister(&driver);
 }
 
-module_init (usb_skel_init);
-module_exit (usb_skel_exit);
+module_init (usb_init); //When the module is loaded, invokes the function usb_init
+module_exit (usb_exit); //When the module is unloaded, invokes the function usb_exit
 
 MODULE_LICENSE("GPL");

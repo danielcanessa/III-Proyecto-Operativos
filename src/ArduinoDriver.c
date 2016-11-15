@@ -17,7 +17,7 @@ This function is going to send a message to the arduino file
 */
 int send_message_to_arduino (char stringToSend[BUFFER_LENGTH])
 {
-	fd = open("/dev/pen0", O_RDWR);
+	fd = open("/dev/RoboticFinger0", O_RDWR);
 	printf("Writing message to the device [%s].\n", stringToSend);
 	ret = write(fd, stringToSend, strlen(stringToSend));
 	if (ret < 0){
@@ -34,7 +34,7 @@ This function is going to read a message send from the arduino
 */
 char* read_message_send_from_arduino()
 {
-	fd = open("/dev/pen0", O_RDWR);
+	fd = open("/dev/RoboticFinger0", O_RDWR);
 	printf("Reading message send from the Arduino.\n");
 	rd = read(fd,stringReceived,50);
 	while(rd = read(fd,stringReceived,50)){
